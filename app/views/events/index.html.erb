@@ -1,0 +1,8 @@
+<h1>Events</h1>
+
+<ul>
+  <%@events.each do |event|%>
+    <li><%=event.name%></li>
+    <%=link_to "Ver esse evento", event_path(event)%>
+  <%end%>
+</ul>
