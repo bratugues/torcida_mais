@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  
+
   def index
     @events = Event.all
   end
@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.match = Match.find(params[:event][:match_id])
     @event.user = current_user
     if @event.save
       redirect_to @event, notice: "Event created!"
@@ -24,6 +25,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :address, :match, :user, :team)
+    params.require(:event).permit(:name, :address, :team)
   end
 end
