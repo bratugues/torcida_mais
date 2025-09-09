@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :events, only: [:index, :show, :new, :create]
-  resources :matches, only: [:index]
+  resources :events, only: [:index, :show, :new, :create] do
+    resources :attendances, only: [:create]
+  end
+
+  resources :attendances, only: [:index, :destroy]
+  resources :matches, only: [:index, :destroy]
+
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

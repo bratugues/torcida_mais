@@ -1,0 +1,11 @@
+<h3>My events</h3>
+
+<ul>
+  <% @attendances.each do |attendance| %>
+    <li><%= attendance.event.name %>
+    <%= link_to "Cancel presence",
+          attendance_path(attendance),
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
