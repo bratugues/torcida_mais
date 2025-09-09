@@ -1,0 +1,12 @@
+<h1>Jogos:</h1>
+
+
+<%@matches.each do |match|%>
+<%my_event_datetime = match.played_at %>
+<%date = my_event_datetime.strftime("%d/%m/%Y")%>
+<%time = my_event_datetime.strftime("%H:%M")%>
+<hr>
+<p>Jogo: <%= match.title %></p>
+<p>Data: <%= date %></p>
+<p>Hora: <%= time %></p>
+<%end%>
