@@ -13,5 +13,9 @@
   <h4>Time do Evento:</h4>
   <p><%= @event.team%></p>
 
+  <%= simple_form_for [@event, @attendance] do |f| %>
+    <%= f.submit "Yes", class: "btn btn-primary" %>
+  <% end %>
+
   <%= link_to "Voltar", events_path%>
 </div>
