@@ -1,0 +1,12 @@
+<h1>Create Event</h1>
+
+<%= simple_form_for @event do |f| %>
+  <%= f.input :name, label: "Event name:" %>
+  <%= f.input :address, label: "Address:" %>
+  <%= f.input :capacity, label: "Capacity:"%>
+  <%= f.input :price, label: "Price:"%>
+  <%= f.association :match, label: "Select the match" %>
+  <%= f.input :team, label: "Choose the team:"%>
+
+  <%= f.submit :submit, label: "Submit"%>
+<% end %>
