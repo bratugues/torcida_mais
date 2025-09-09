@@ -1,4 +1,17 @@
-<h1><%=@event.name%> - <%= @event.match.title %></h1>
+<div class="mt-3">
+  <h1><%=@event.name%></h1>
 
-<h5>Endereço:</h5>
-<p><%= @event.address%></p>
+  <h4>Organizado por:</h4>
+  <p><%= @event.user.email %></p>
+
+  <h4>Jogo:</h4>
+  <p><%= @event.match.title %></p>
+
+  <h4>Endereço:</h4>
+  <p><%= @event.address%></p>
+
+  <h4>Time do Evento:</h4>
+  <p><%= @event.team%></p>
+
+  <%= link_to "Voltar", events_path%>
+</div>
