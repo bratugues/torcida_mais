@@ -7,4 +7,25 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendance = Attendance.new
   end
+
+  def new
+    @event = Event.new
+  end
+
+  def create
+    @event = Event.new(event_params)
+    @event.match = Match.find(params[:event][:match_id])
+    @event.user = current_user
+    if @event.save
+      redirect_to @event, notice: "Event created!"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:name, :address, :team)
+  end
 end
