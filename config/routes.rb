@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :events, only: [:index, :show, :new, :create] do
     resources :attendances, only: [:create]
     resources :reviews, only: [:new, :create, :index]
+    resources :chats, only: [:index]
+    resources :messages, only: [:create]
   end
 
   resources :attendances, only: [:index, :destroy]

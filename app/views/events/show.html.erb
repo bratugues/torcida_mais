@@ -14,10 +14,13 @@
   <p><%= @event.team%></p>
 
   <%= simple_form_for [@event, @attendance] do |f| %>
-    <%= f.submit "Yes", class: "btn btn-primary" %>
+    <%= f.submit "Confirm presence", class: "btn btn-primary" %>
   <% end %>
 
-  <%= link_to "Voltar", events_path%>
+  <div class="buttons mt-3">
+    <%= link_to "Back", events_path, class: "btn btn-primary"%>
+    <%= link_to "Chat", event_chats_path(@event), class: "btn btn-primary"%>
+  </div>
 </div>
 
 <h3 class="mt-3">My confirmed review</h3>

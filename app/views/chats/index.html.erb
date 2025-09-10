@@ -1,0 +1,27 @@
+<h1 class="mt-3">Chat do Evento - <%= @event.name %></h1>
+
+<div id="messages">
+  <div class="border border-dark p-3 my-3 bg-white">
+    <% @event.messages.each do |message| %>
+      <% if message.user == current_user %>
+        <div class="d-flex justify-content-end mb-2">
+          <div class="bg-danger-subtle px-3 pb-0 pt-3 rounded-pill">
+            <%= message.content %>
+          </div>
+        </div>
+      <% else %>
+        <div class="d-flex justify-content-start mb-5">
+          <div class="bg-secondary-subtle px-3 pb-0 pt-3 rounded-pill">
+            <%= message.content %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= simple_form_for [@event, @message] do |f|%>
+  <%= f.input :content, placeholder: "Type your message...", class: "bg-white" %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>
+<%= link_to "Back", event_path(@event), class: "btn btn-primary mt-3"%>
