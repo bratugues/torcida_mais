@@ -5,4 +5,8 @@ class Event < ApplicationRecord
   has_many :messages
 
   validates :name, :address, :team, presence: true
+
+  def average_rating
+    reviews.average(:rating)
+  end
 end
