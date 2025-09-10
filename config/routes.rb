@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :events, only: [:index, :show, :new, :create] do
     resources :attendances, only: [:create]
+    resources :chats, only: [:index]
+    resources :messages, only: [:create]
   end
 
   resources :attendances, only: [:index, :destroy]
