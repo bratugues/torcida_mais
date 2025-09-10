@@ -23,6 +23,16 @@
   </div>
 </div>
 
+<h3>Review average</h3>
+<p>
+  Média das avaliações:
+  <% if @event.average_rating.present? %>
+    <%= @event.average_rating %> / 5
+  <% else %>
+    Ainda não avaliado
+  <% end %>
+</p>
+
 <h3 class="mt-3">My confirmed review</h3>
 
   <ul>
