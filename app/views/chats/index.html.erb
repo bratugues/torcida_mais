@@ -1,0 +1,6 @@
+<h1>Chat do Evento <%= @event.name %></h1>
+
+<%= simple_form_for [@event, @message] do |f|%>
+  <%= f.input :content %>
+  <%= f.submit "Enviar", class: "btn btn-primary" %>
+<% end %>
