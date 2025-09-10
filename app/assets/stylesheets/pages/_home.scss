@@ -1,1 +1,40 @@
-// Specific CSS for your home-page
+
+.home-hero{
+  max-width: 960px;
+  height: 660px;
+  margin: 32px auto;
+  padding: 48px 32px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.06);
+  text-align: center;
+}
+
+.home-hero #logo{
+  font-size: 48px;
+  font-weight: 700;
+  margin: 80px;
+}
+
+.home-hero .copy h3{
+  font-weight: 400;
+  font-size: 24px;
+  margin: 0 auto;
+  max-width: 720px;
+  color: #1f2937;
+  margin-bottom: 80px;
+}
+
+.actions {
+  margin-top: 40px;
+  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 576px){
+  .home-hero{ padding: 32px 20px; margin: 16px; }
+}
