@@ -23,6 +23,10 @@
   </div>
 </div>
 
+  <%= link_to "Remove", event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-dark" %>
+
+  <%= link_to "Edit", edit_event_path, class: "btn btn-primary"%>
+
 <h3>Review average</h3>
 <p>
   Média das avaliações:

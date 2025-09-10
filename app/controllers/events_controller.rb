@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendance = Attendance.new
     @review = Review.new
+    @message = Message.new
   end
 
   def new
@@ -24,9 +25,28 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, notice: "Successfully update"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path, status: :see_other
+  end
+
   private
 
   def event_params
-    params.require(:event).permit(:name, :address, :team)
+    params.require(:event).permit(:name, :address, :capacity, :price, :match, :team)
   end
 end
