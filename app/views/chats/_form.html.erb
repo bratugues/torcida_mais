@@ -1,0 +1,4 @@
+<%= simple_form_for [event, message] do |f|%>
+  <%= f.input :content, placeholder: "Type your message...", class: "bg-white" %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>
