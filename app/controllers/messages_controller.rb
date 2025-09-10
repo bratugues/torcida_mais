@@ -5,9 +5,9 @@ class MessagesController < ApplicationController
     @message.user = current_user
     @message.event = @event
     if @message.save
-      redirect_to event_chats_path(@event)
+      render turbo_stream: turbo_stream.replace("new_message", partial: "chats/form", locals: {event: @event, message: Message.new})
     else
-      render "events/show", status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace("new_message", partial: "chats/form", locals: {event: @event, message: @message})
     end
   end
 

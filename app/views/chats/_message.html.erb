@@ -1,0 +1,10 @@
+<div data-controller="chat" data-chat-message-user-id-value="<%= message.user.id %>">
+  <div data-chat-target="outer">
+    <div data-chat-target="inner">
+      <p>
+        <%= message.content %>
+      </p>
+      <%= message.user.email %>
+    </div>
+  </div>
+</div>
