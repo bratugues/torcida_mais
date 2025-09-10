@@ -4,6 +4,15 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :name,
+                required: false,
+                autofocus: true %>
+    <%= f.input :username,
+                required: true,
+                autofocus: true %>
+    <%= f.input :location,
+                required: false,
+                autofocus: true %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
@@ -15,6 +24,8 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :team, required: true, :collection => %w[Atlético\ Mineiro Bahia Botafogo Ceará Corinthians Cruzeiro Flamengo Fluminense Fortaleza Grêmio Internacional Juventude Mirassol Palmeiras Red\ Bull\ Bragantino Santos São\ Paulo Sport Vasco\ da\ Gama Vitória], :prompt => "Select your team" %>
+    <%= f.input :bar, label: "I am a bar or establishment", as: :boolean %>
   </div>
 
   <div class="form-actions">
