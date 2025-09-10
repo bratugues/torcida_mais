@@ -14,7 +14,7 @@ match4 = Match.create!(title:"Atletico Mineiro x Sao Paulo", played_at: "Sat, 20
 
 Event.create!(
   name: "Classico Majestoso",
-  address: "Rua das Araras 192",
+rail  address: "Rua das Araras 192",
   match: match1,
   user: user1,
   team: "São Paulo FC"
