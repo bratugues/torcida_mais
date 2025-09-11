@@ -3,13 +3,11 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
-    if params[:name].present?
-      @events = @events.where(name: params[:name])
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR address ILIKE :query"
+      @events = @events.where(sql_subquery, query: "%#{params[:query]}%")
     end
 
-    if params[:team].presence?
-      @events = @events.where(team: params[:team])
-    end
   end
 
   def show
