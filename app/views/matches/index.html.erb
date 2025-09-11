@@ -1,12 +1,22 @@
-<h1>Matches:</h1>
+<div data-controller="calendar">
+  <h1>Matches:</h1>
 
 
-<%@matches.each do |match|%>
-<%my_event_datetime = match.played_at %>
-<%date = my_event_datetime.strftime("%d/%m/%Y")%>
-<%time = my_event_datetime.strftime("%H:%M")%>
-<hr>
-<p>Match: <%= match.title %></p>
-<p>Date: <%= date %></p>
-<p>Time: <%= time %></p>
-<%end%>
+  <hr>
+
+  <label for="date-selector">Select a date:</label>
+  <input type="date" id="date-selector" data-action="change->calendar#apply">
+
+  <%@matches.each do |match|%>
+    <%my_event_datetime = match.played_at %>
+    <%date_for_js = my_event_datetime.strftime('%Y-%m-%d') %>
+    <%date_for_user = my_event_datetime.strftime("%d/%m/%Y")%>
+    <%time_for_user = my_event_datetime.strftime("%H:%M")%>
+    <div data-calendar-target="match" data-date="<%= date_for_js %>">
+      <hr>
+      <p>Match: <%= match.title %></p>
+      <p>Date: <%= date_for_user %></p>
+      <p>Time: <%= time_for_user %></p>
+    </div>
+  <%end%>
+</div>
