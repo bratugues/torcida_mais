@@ -1,0 +1,53 @@
+body{
+  background-color: $snow;
+}
+.title{
+  font-size: 3rem;
+}
+
+hr{
+  color: $bordeaux
+}
+.about-card {
+  height: auto;
+  max-width: 360px;
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+   &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+   }
+}
+
+.photo-border {
+  border: 3px solid $sage-green;
+}
+
+.icon {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: $forest;
+  transition: color 0.3s ease, transform 0.2s ease;
+    &:hover{
+      color: $sage-green;
+      transform: translateY(-3px);
+    }
+}
+.sage-green{
+  color: $sage-green;
+}
+
+.forest{
+  color: $forest;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.bio{
+  font-size: 0.9rem;
+  font-weight: 400;
+}

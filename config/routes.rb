@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :attendances, only: [:index, :destroy]
   resources :matches, only: [:index, :destroy]
+  get "about", to: "pages#about"
 
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
