@@ -118,8 +118,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_11_170913) do
     t.string "name"
     t.string "username"
     t.string "location"
-    t.boolean "bar"
     t.string "team"
+    t.boolean "bar"
     t.string "bar_name"
     t.string "bar_address"
     t.index ["email"], name: "index_users_on_email", unique: true
