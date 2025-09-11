@@ -4,42 +4,13 @@ User.destroy_all
 
 user1 = User.create!(email: "joao123@gmail.com", password: "123123", )
 
-match1 = Match.create!(title:"Sao Paulo x Corinthians", played_at: "Fri, 12 Sep 2025 20:00:00 UTC +00:00", team_1: "Sao Paulo", team_2: "Corinthians")
-
-match2 = Match.create!(title:"Palmeiras x Sao Paulo", played_at: "Sun, 14 Sep 2025 16:00:00 UTC +00:00", team_1: "Palmeiras", team_2: "Sao Paulo")
-
-match3 = Match.create!(title:"Sao Paulo x Santos", played_at: "Wed, 17 Sep 2025 21:30:00 UTC +00:00", team_1: "Sao Paulo", team_2: "Santos")
-
-match4 = Match.create!(title:"Atletico Mineiro x Sao Paulo", played_at: "Sat, 20 Sep 2025 19:00:00 UTC +00:00", team_1: "Atletico Mineiro", team_2: "Sao Paulo")
-
-Event.create!(
-  name: "Classico Majestoso",
-  address: "Rua das Araras 192",
-  match: match1,
-  user: user1,
-  team: "São Paulo FC"
-)
-
-Event.create!(
-  name: "Choque-Rei",
-  address: "Av. Paulista 1000",
-  match: match2,
-  user: user1,
-  team: "São Paulo FC"
-)
-
-Event.create!(
-  name: "San-São",
-  address: "Praça da Sé 55",
-  match: match3,
-  user: user1,
-  team: "São Paulo FC"
-)
-
-Event.create!(
-  name: "Clássico das Multidões",
-  address: "Av. Independência 250",
-  match: match4,
-  user: user1,
-  team: "São Paulo FC"
-)
+Match.create!(title:"Fluminense x Corinthians", played_at: "Sat, 13 Sep 2025 21:00:00 UTC +00:00", team_1: "Fluminense", team_2: "Corinthians")
+Match.create!(title:"Grêmio x Mirassol", played_at: "Sat, 13 Sep 2025 16:00:00 UTC +00:00", team_1: "Grêmio", team_2: "Mirassol")
+Match.create!(title:"Fortaleza x Vitória", played_at: "Sat, 13 Sep 2025 16:00:00 UTC +00:00", team_1: "Fortaleza", team_2: "Vitória")
+Match.create!(title:"Palmeiras x Internacional", played_at: "Sat, 13 Sep 2025 18:30:00 UTC +00:00", team_1: "Palmeiras", team_2: "Internacional")
+Match.create!(title:"Bragantino x Sport", played_at: "Sun, 14 Sep 2025 11:00:00 UTC +00:00", team_1: "Bragantino", team_2: "Sport")
+Match.create!(title:"Atlético-MG x Santos", played_at: "Sun, 14 Sep 2025 16:00:00 UTC +00:00", team_1: "Atlético-MG", team_2: "Santos")
+Match.create!(title:"Juventude x Flamengo", played_at: "Sun, 14 Sep 2025 16:00:00 UTC +00:00", team_1: "Juventude", team_2: "Flamengo")
+Match.create!(title:"São Paulo x Botafogo", played_at: "Sun, 14 Sep 2025 17:30:00 UTC +00:00", team_1: "São Paulo", team_2: "Botafogo")
+Match.create!(title:"Vasco x Ceará", played_at: "Sun, 14 Sep 2025 20:30:00 UTC +00:00", team_1: "Vasco", team_2: "Ceará")
+Match.create!(title:"Bahia x Cruzeiro", played_at: "Mon, 15 Sep 2025 20:00:00 UTC +00:00", team_1: "Bahia", team_2: "Cruzeiro")
