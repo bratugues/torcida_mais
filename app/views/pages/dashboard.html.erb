@@ -2,12 +2,28 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 offset-sm-3">
       <h1>Hi, <%= current_user.name %></h1>
-        <h2>Upcoming matches</h2>
-          <% if @matches.any? %>
-            <% @matches.each do |match| %>
+
+      <h2>Upcoming matches (your team)</h2>
+        <% if @my_matches.any? %>
+          <% @my_matches.each do |match| %>
+            <% dt = match.played_at %>
+            <hr>
+            <p>Match: <%= match.title %></p>
+            <% if dt.present? %>
+              <p>Date: <%= dt.strftime("%d/%m/%Y") %></p>
+              <p>Time: <%= dt.strftime("%H:%M") %></p>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>No matches for your team found.</p>
+        <% end %>
+
+        <h2>Other matches</h2>
+          <% if @other_matches.any? %>
+            <% @other_matches.each do |match| %>
               <% dt = match.played_at %>
               <hr>
-              <p>Jogo: <%= match.title %></p>
+              <p>Match: <%= match.title %></p>
               <% if dt.present? %>
                 <p>Data: <%= dt.strftime("%d/%m/%Y") %></p>
                 <p>Hora: <%= dt.strftime("%H:%M") %></p>
@@ -16,7 +32,7 @@
           <% else %>
             <p>No upcoming matches.</p>
           <% end %>
-          <%= link_to "See all the matches", matches_path, class: "btn btn-primary" %>
+      
 
         <h2>Confirmed events</h2>
         <% if @attendances.any? %>
