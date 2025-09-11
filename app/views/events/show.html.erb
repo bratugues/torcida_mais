@@ -1,17 +1,23 @@
 <div class="mt-3">
   <h1><%=@event.name%></h1>
 
-  <h4>Organizado por:</h4>
+  <h4>Hosted by:</h4>
   <p><%= @event.user.email %></p>
 
-  <h4>Jogo:</h4>
+  <h4>Match:</h4>
   <p><%= @event.match.title %></p>
 
-  <h4>Endereço:</h4>
+  <h4>Date and Time:</h4>
+  <p><%= @event.date %></p>
+
+  <h4>Address:</h4>
   <p><%= @event.address%></p>
 
-  <h4>Time do Evento:</h4>
+  <h4>Event team:</h4>
   <p><%= @event.team%></p>
+
+  <h4>Description</h4>
+  <p><%= @event.description%></p>
 
   <%= simple_form_for [@event, @attendance] do |f| %>
     <%= f.submit "Confirm presence", class: "btn btn-primary" %>
