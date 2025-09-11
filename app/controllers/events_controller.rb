@@ -11,6 +11,7 @@ class EventsController < ApplicationController
       @events = @events.where(team: params[:team])
     end
   end
+
   def show
     @event = Event.find(params[:id])
     @attendance = Attendance.new
@@ -50,6 +51,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to events_path, status: :see_other
+  end
+
+  def my
+    @events = current_user.events
   end
 
   private

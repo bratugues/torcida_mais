@@ -1,26 +1,13 @@
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="mb-0 main-blue-text">Events</h1>
-      <div class="row justify-content-center">
-        <div class="col-sm-8 my-3">
-          <%= form_with url: events_path, method: :get, class: "d-flex" do %>
-            <%= text_field_tag :query,
-                  params[:query],
-                  class: "form-control",
-                  placeholder: "Type a keyword"
-            %>
-            <%= submit_tag "Search", name: "", class: "btn btn-primary"%>
-          <%= end %>
-        </div>
-      </div>
-      <!-- Button always visible -->
+      <h1 class="mb-0 main-blue-text">My Events</h1>
       <%= link_to "Create new event",
                   new_event_path,
                   class: "btn btn-primary btn-lg action-blue solid-button" %>
     </div>
 
   <div class="row mt-4">
-    <%@events.each do |event|%>
+    <% @events.each do |event|%>
       <div class="col-4 mb-3">
           <div class="card w-100 text-center" style="width: 18rem;">
             <div class="card-body">
@@ -28,8 +15,7 @@
               <h6 class="card-subtitle mb-2 text-body-secondary"><%=event.name%></h6>
               <p class="card-text"><strong>Location:</strong> <%=event.address%></p>
               <%=link_to "See event", event_path(event), class:"card-link btn btn-primary"%>
-              <%=button_to "I want to go", event_attendances_path(event),
-              method: :post, class: "btn btn-primary"%>
+              <%=link_to "I want to go", "#", class:"card-link btn btn-primary"%>
             </div>
           </div>
         </div>
