@@ -13,3 +13,18 @@
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
+
+ .btn-secondary {
+  display: inline-block;   /* fica só do tamanho do conteúdo */
+  padding: 16px 28px;      /* ajusta o espaço interno */
+  border-radius: 9999px;
+  background: #386150;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
