@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :messages
   has_many :events
+  validates :bar_name, :bar_address, presence: true, if: :bar?
 
   def average_event_rating
     reviews.average(:rating)

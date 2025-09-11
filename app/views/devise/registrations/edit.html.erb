@@ -22,8 +22,31 @@
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
   </div>
+    <div data-controller="toggle">
+    <div class="form-check mb-3">
+      <%= f.check_box :bar,
+            class: "form-check-input",
+            data: { action: "toggle#switch", toggle_target: "checkbox" } %>
+      <%= f.label :bar, "Sou bar / estabelecimento", class: "form-check-label" %>
+    </div>
+
+    <!-- Campos exclusivos de bar -->
+    <div data-toggle-target="panel" class="<%= resource.bar? ? '' : 'd-none' %>">
+      <div class="mb-3">
+        <%= f.text_field :bar_name,
+              placeholder: "Nome do bar",
+              class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.text_field :bar_address,
+              placeholder: "Endereço do bar",
+              class: "form-control" %>
+      </div>
+    </div>
+  </div>
 
   <div class="form-actions">
+
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>
