@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+  delete "/users", to: "devise/registrations#destroy", as: :destroy_user_registration
   resources :events, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
       get :my
     end
-    
+
     resources :attendances, only: [:create]
     resources :reviews, only: [:new, :create, :index]
     resources :chats, only: [:index]

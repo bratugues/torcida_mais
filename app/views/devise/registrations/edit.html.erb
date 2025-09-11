@@ -28,8 +28,12 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<hr>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+<div class="mt-4">
+  <%= button_to "Excluir minha conta",
+                destroy_user_registration_path,
+                method: :delete,
+                data: { turbo_confirm: "Tem certeza que deseja excluir sua conta?" },
+                class: "btn btn-danger w-100" %>
+</div>
