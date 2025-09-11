@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 offset-sm-3">
+      <h1>Hi, <%= current_user.name %></h1>
+        <h2>Upcoming matches</h2>
+          <% if @matches.any? %>
+            <% @matches.each do |match| %>
+              <% dt = match.played_at %>
+              <hr>
+              <p>Jogo: <%= match.title %></p>
+              <% if dt.present? %>
+                <p>Data: <%= dt.strftime("%d/%m/%Y") %></p>
+                <p>Hora: <%= dt.strftime("%H:%M") %></p>
+              <% end %>
+            <% end %>
+          <% else %>
+            <p>No upcoming matches.</p>
+          <% end %>
+          <%= link_to "See all the matches", matches_path, class: "btn btn-primary" %>
+
+        <h2>Confirmed events</h2>
+        <% if @attendances.any? %>
+            <ul>
+          <% @attendances.each do |attendance| %>
+            <li><%= attendance.event.name %>
+            <%= link_to "Cancel presence",
+                  attendance_path(attendance),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </li>
+          <% end %>
+        </ul>
+        <% else %>
+          <p>You don’t have confirmed events yet.</p>
+        <% end %>
+    </div>
+  </div>
+</div>
