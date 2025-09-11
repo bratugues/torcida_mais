@@ -14,6 +14,7 @@
               <h5 class="card-title"><strong><%=event.match.title%></strong></h5>
               <h6 class="card-subtitle mb-2 text-body-secondary"><%=event.name%></h6>
               <p class="card-text"><strong>Location:</strong> <%=event.address%></p>
+              <p class="card-text"><strong>Date:</strong> <%= event.date.strftime("%d/%m/%Y") %> - <%= event.date.strftime("%H:%M") %></p>
               <%=link_to "See event", event_path(event), class:"card-link btn btn-primary"%>
               <%=link_to "I want to go", "#", class:"card-link btn btn-primary"%>
             </div>

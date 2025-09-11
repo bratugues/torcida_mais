@@ -8,7 +8,7 @@
   <p><%= @event.match.title %></p>
 
   <h4>Date and Time:</h4>
-  <p><%= @event.date %></p>
+  <p><%= @event.date.strftime("%d/%m/%Y") %> - <%= @event.date.strftime("%H:%M") %></p>
 
   <h4>Address:</h4>
   <p><%= @event.address%></p>
