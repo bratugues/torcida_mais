@@ -1,0 +1,60 @@
+.user-header {
+    margin-top: 24px;
+    padding: 48px 32px;
+    background-color: #DDEB9D;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    z-index: 1;
+
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+    }
+}
+
+.user-body {
+  background-color: rgba(250, 248, 248, 0.925);
+  padding: 32px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 12px 12px 0 0;
+  margin-top: -20px;
+  position: relative;
+  z-index: 2;
+
+
+}
+
+.user-confirmed-events {
+  background-color: lightgrey;
+  padding: 32px;
+  border-radius: 12px;
+  margin-top: -10px;
+  position: relative;
+  z-index: 2;
+
+  .events-container {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;          // espaço entre os cards
+    flex-wrap: wrap;    // permite quebrar linha em telas menores
+  }
+
+  .event-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex: 1 1 200px;   // cresce, encolhe e tem largura mínima de 200px
+  }
+
+  .cancel-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: #d9534f;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
