@@ -1,0 +1,71 @@
+.user-header {
+    margin-top: 24px;
+    padding: 48px 32px;
+    background-color: #DDEB9D;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    z-index: 1;
+
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+    }
+}
+
+.user-body {
+  background-color: rgba(250, 248, 248, 0.925);
+  padding: 32px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 12px 12px 0 0;
+  margin-top: -20px;
+  position: relative;
+  z-index: 2;
+
+
+}
+
+.user-confirmed-events {
+  background-color: lightgrey;
+  padding: 32px;
+  border-radius: 12px;
+  margin-top: -10px;
+  position: relative;
+  z-index: 2;
+
+  .events-container {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .event-card {
+  position: relative; // necessário para o stretched-link
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex: 1 1;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    cursor: pointer;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #212529; // texto mais forte
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #6c757d; // cinza Bootstrap
+    margin-bottom: 12px;
+  }
+}
+
+}

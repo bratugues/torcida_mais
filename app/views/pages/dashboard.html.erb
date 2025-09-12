@@ -1,53 +1,87 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 offset-sm-3">
-      <h1>Hi, <%= current_user.name %></h1>
+      <div class="user-header">
+        <h1>Hi, <%= current_user.name %></h1>
+        <i class="fa-solid fa-location-dot"></i>
+        <%= current_user.location %>
+      </div>
 
-      <h2>Upcoming matches (your team)</h2>
-        <% if @my_matches.any? %>
-          <% @my_matches.each do |match| %>
-            <% dt = match.played_at %>
-            <hr>
-            <p>Match: <%= match.title %></p>
-            <% if dt.present? %>
-              <p>Date: <%= dt.strftime("%d/%m/%Y") %></p>
-              <p>Time: <%= dt.strftime("%H:%M") %></p>
+      <div class="user-body">
+        <h3>Coming up for <%= current_user.team %></h3>
+          <% if @my_matches.any? %>
+            <% @my_matches.each do |match| %>
+              <% dt = match.played_at %>
+              <hr>
+              <p>Match: <%= match.title %></p>
+              <% if dt.present? %>
+                <p>Date: <%= dt.strftime("%d/%m/%Y") %></p>
+                <p>Time: <%= dt.strftime("%H:%M") %></p>
+              <% end %>
             <% end %>
+          <% else %>
+            <p>No matches for your team found.</p>
           <% end %>
-        <% else %>
-          <p>No matches for your team found.</p>
-        <% end %>
+          <%= link_to "Find an event", events_path, class: "btn btn-secondary" %>
+      </div>
 
-        <h2>Other matches</h2>
+      <div class="user-body">
+        <h3>
+          Other matches
+          <button class="btn btn-sm btn-outline-dark btn-lg rounded-pill ms-2"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#otherMatches"
+                  aria-expanded="false"
+                  aria-controls="otherMatches">
+            Show
+          </button>
+        </h3>
+
+        <div class="collapse" id="otherMatches">
           <% if @other_matches.any? %>
             <% @other_matches.each do |match| %>
               <% dt = match.played_at %>
               <hr>
               <p>Match: <%= match.title %></p>
               <% if dt.present? %>
-                <p>Data: <%= dt.strftime("%d/%m/%Y") %></p>
-                <p>Hora: <%= dt.strftime("%H:%M") %></p>
+                <p>Date: <%= dt.strftime("%d/%m/%Y") %></p>
+                <p>Time: <%= dt.strftime("%H:%M") %></p>
               <% end %>
             <% end %>
           <% else %>
             <p>No upcoming matches.</p>
           <% end %>
-      
 
-        <h2>Confirmed events</h2>
-        <% if @attendances.any? %>
-            <ul>
-          <% @attendances.each do |attendance| %>
-            <li><%= attendance.event.name %>
-            <%= link_to "Cancel presence",
-                  attendance_path(attendance),
-                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-            </li>
+          <%= link_to "See all upcoming matches", matches_path, class: "btn btn-secondary mt-2" %>
+        </div>
+      </div>
+
+
+      <div class="user-confirmed-events">
+        <h2>Your confirmed events</h2>
+          <% if @attendances.any? %>
+            <div class="events-container">
+              <% @attendances.each do |attendance| %>
+                <div class="event-card position-relative">
+                  <%= link_to "", event_path(attendance.event), class: "stretched-link" %>
+
+                  <p class="card-title"><%= attendance.event.name %></p>
+                  <p class="card-text"><%= attendance.event.date&.strftime("%d/%m - %H:%M") %></p>
+
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span class="participants">
+                      <i class="fa-solid fa-users"></i>
+                      <%= pluralize(attendance.event.attendances.count, "attendee") %>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p>You don’t have confirmed events yet.</p>
           <% end %>
-        </ul>
-        <% else %>
-          <p>You don’t have confirmed events yet.</p>
-        <% end %>
+      </div>
     </div>
   </div>
 </div>

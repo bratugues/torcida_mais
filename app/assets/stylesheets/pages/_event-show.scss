@@ -1,0 +1,81 @@
+.btn-custom-primary{
+  background-color: $verde-principal;
+}
+
+.btn-custom-secondary{
+  border-color: $verde-principal;
+  color: $verde-principal;
+  border-radius: 16px;
+}
+
+.card-custom {
+  background-color: #FFFFFF; // Um branco puro para os cards se destacarem do fundo
+  border: 1px solid #EAEAEA; // Uma borda muito sutil em vez de depender apenas da sombra
+  border-radius: 12px;       // Nossos cantos modernos e suaves
+  padding: 24px;             // Um bom respiro interno
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // A sombra suave para dar profundidade
+  margin-bottom: 24px;       // Espaçamento entre os cards
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.main-info{
+  background-color: $verde-secundario;
+  border: 1px solid grey;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.review-card{
+  border: 1px solid grey;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.event-title{
+  font-size: 2.5rem; // Exemplo: 40px
+  font-weight: 600; // SemiBold
+  margin-bottom: 16px;
+}
+
+.main-text{
+  color: $texto-principal;
+  font-weight: 500;
+}
+
+.label-text{
+  font-size: 0.875rem;
+  color: $texto-secundario;
+  margin-bottom: 4px;
+}
+
+.sticky{
+  position: sticky;
+  top: 24px;
+}
+
+.participants-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.participant-item{
+  background-color: $verde-secundario;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $texto-principal;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
