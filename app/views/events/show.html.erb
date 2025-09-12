@@ -42,9 +42,13 @@
         <div class="action-card card-custom">
           <%# card position sticky %>
           <%# botao de confirmar presenca %>
-          <%= simple_form_for [@event, @attendance] do |f| %>
-            <%= f.submit "Confirm presence", class: "btn btn-custom-primary btn-primary" %>
-          <% end %>
+          <%if @user_in_event%>
+            <p>You're already in the event.</p>
+          <%else%>
+            <%= simple_form_for [@event, @attendance] do |f| %>
+              <%= f.submit "Confirm presence", class: "btn btn-custom-primary btn-primary" %>
+            <% end %>
+          <%end%>
           <%# botoes secundarios chat e voltar %>
           <div class="buttons mt-3 text-center">
             <%= link_to "Back", events_path, class: "btn btn-custom-secondary"%>

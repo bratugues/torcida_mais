@@ -20,6 +20,7 @@ class EventsController < ApplicationController
     @attendances = @event.attendances
     @review = Review.new
     @message = Message.new
+    @user_in_event = Attendance.where(event: @event, user: current_user).any?
   end
 
   def new

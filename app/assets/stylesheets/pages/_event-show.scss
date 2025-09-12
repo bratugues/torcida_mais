@@ -3,9 +3,9 @@
 }
 
 .btn-custom-secondary{
-  border-color: #585858;
-  color: #585858;
-  border-radius: 8px;
+  border-color: $verde-principal;
+  color: $verde-principal;
+  border-radius: 16px;
 }
 
 .card-custom {
@@ -28,11 +28,6 @@
   border-radius: 12px;
   padding: 12px;
 }
-
-// .action-card {
-//   position: sticky;
-//   top: 24px;
-// }
 
 .event-title{
   font-size: 2.5rem; // Exemplo: 40px
