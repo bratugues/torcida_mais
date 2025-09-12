@@ -1,0 +1,52 @@
+.btn-custom-primary{
+  background-color: $verde-principal;
+}
+
+.btn-custom-secondary{
+  border-color: #585858;
+  color: #585858;
+  border-radius: 8px;
+}
+
+.card-custom {
+  background-color: #FFFFFF; // Um branco puro para os cards se destacarem do fundo
+  border: 1px solid #EAEAEA; // Uma borda muito sutil em vez de depender apenas da sombra
+  border-radius: 12px;       // Nossos cantos modernos e suaves
+  padding: 24px;             // Um bom respiro interno
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // A sombra suave para dar profundidade
+  margin-bottom: 24px;       // Espaçamento entre os cards
+}
+.main-info{
+  background-color: $verde-secundario;
+  border: 1px solid grey;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.review-card{
+  border: 1px solid grey;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.action-card {
+  position: sticky;
+  top: 24px;
+}
+
+.event-title{
+  font-size: 2.5rem; // Exemplo: 40px
+  font-weight: 600; // SemiBold
+  margin-bottom: 16px;
+}
+
+.main-text{
+  color: $texto-principal;
+  font-weight: 500;
+}
+
+.label-text{
+  font-size: 0.875rem;
+  color: $texto-secundario;
+  margin-bottom: 4px;
+}

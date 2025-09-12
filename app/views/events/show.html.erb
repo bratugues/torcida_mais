@@ -1,8 +1,69 @@
-<div class="mt-3">
+<div class="container event-page mt-4">
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <h1 class="event-title"><%=@event.name%></h1>
+      <h5 >Description</h5>
+      <p><%= @event.description%></p>
+      <div class="main-info card-custom">
+        <%# icone calendario %>
+        <h5 class="label-text">Date and Time:</h5>
+        <p class="main-text"><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y") %> - <%= @event.date.strftime("%H:%M") %></p>
+        <%# icone localizacao %>
+        <h5 class="label-text">Address:</h5>
+        <p class="main-text"><i class="fa-solid fa-location-dot"></i> <%= @event.address%></p>
+        <%# icone de usuario %>
+        <h5 class="label-text">Hosted by:</h5>
+        <p class="main-text"><i class="fa-solid fa-user"></i> <%= @event.user.username %></p>
+        <%# icone camisa de time %>
+        <h5 class="label-text">Event team:</h5>
+        <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.team%></p>
+      </div>
+      <div class="review-card card-custom mt-3">
+        <%# deixe seu comentario %>
+        <h3>Review this event:</h3>
+        <%= simple_form_for [@event, @review] do |f| %>
+          <%= f.input :rating, as: :integer, placeholder: "Dê sua nota de 1 a 5" %>
+          <%= f.input :title, as: :text, placeholder: "Titulo da sua avaliação" %>
+          <%= f.input :content, as: :text, placeholder: "Deixe seu comentário" %>
+          <%= f.submit "Enviar", class: "btn btn-primary" %>
+        <% end %>
+        <%# lista de comentarios existentes %>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <div class="action-card card-custom">
+        <%# card position sticky %>
+        <%# botao de confirmar presenca %>
+        <%= simple_form_for [@event, @attendance] do |f| %>
+          <%= f.submit "Confirm presence", class: "btn btn-custom-primary btn-primary" %>
+        <% end %>
+        <%# botoes secundarios chat e voltar %>
+        <div class="buttons mt-3 text-center">
+          <%= link_to "Back", events_path, class: "btn btn-custom-secondary"%>
+          <%= link_to "Chat", event_chats_path(@event), class: "btn btn-custom-secondary"%>
+        </div>
+      </div>
+
+      <div class="participants-card card-custom">
+        <%# all confirmed users %>
+        <h5>Confirmed(<%=@attendances.count%>)</h5>
+        <%@attendances.each do |attendance|%>
+          <%=attendance.user.name%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="main-div mt-3">
   <h1><%=@event.name%></h1>
 
   <h4>Hosted by:</h4>
-  <p><%= @event.user.email %></p>
+  <p><%= @event.user.username %></p>
 
   <h4>Match:</h4>
   <p><%= @event.match.title %></p>
@@ -20,12 +81,12 @@
   <p><%= @event.description%></p>
 
   <%= simple_form_for [@event, @attendance] do |f| %>
-    <%= f.submit "Confirm presence", class: "btn btn-primary" %>
+    <%= f.submit "Confirm presence", class: "btn btn-custom-primary btn-primary" %>
   <% end %>
 
   <div class="buttons mt-3">
-    <%= link_to "Back", events_path, class: "btn btn-primary"%>
-    <%= link_to "Chat", event_chats_path(@event), class: "btn btn-primary"%>
+    <%= link_to "Back", events_path, class: "btn btn-custom-secondary"%>
+    <%= link_to "Chat", event_chats_path(@event), class: "btn btn-custom-secondary"%>
   </div>
 </div>
 
