@@ -28,13 +28,13 @@
       <div class="user-body">
         <h3>
           Other matches
-          <button class="btn btn-sm btn-outline-dark rounded-pill ms-2"
+          <button class="btn btn-sm btn-outline-dark btn-lg rounded-pill ms-2"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#otherMatches"
                   aria-expanded="false"
                   aria-controls="otherMatches">
-            Show / Hide
+            Show
           </button>
         </h3>
 
@@ -63,13 +63,21 @@
           <% if @attendances.any? %>
             <div class="events-container">
               <% @attendances.each do |attendance| %>
-                <div class="event-card">
-                  <p><%= attendance.event.name %></p>
+              <div class="event-card">
+                <p class="card-title"><%= attendance.event.name %></p>
+                <p class="card-text"><%= attendance.event.date&.strftime("%d/%m - %H:%M") %></p>
+
+                <div class="d-flex align-items-center justify-content-between">
+                  <span class="participants">
+                    <i class="fa-solid fa-users"></i>
+                    <%= attendance.event.attendances.count %>
+                  </span>
                   <%= link_to "Cancel presence",
                       attendance_path(attendance),
                       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                      class: "cancel-link" %>
+                      class: "btn btn-sm btn-outline-dark rounded-pill" %>
                 </div>
+              </div>
               <% end %>
             </div>
           <% else %>
