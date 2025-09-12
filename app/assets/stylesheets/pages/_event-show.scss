@@ -15,6 +15,7 @@
   padding: 24px;             // Um bom respiro interno
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // A sombra suave para dar profundidade
   margin-bottom: 24px;       // Espaçamento entre os cards
+  animation: fadeInUp 0.5s ease-out forwards;
 }
 .main-info{
   background-color: $verde-secundario;
@@ -66,4 +67,15 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: $texto-principal;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
