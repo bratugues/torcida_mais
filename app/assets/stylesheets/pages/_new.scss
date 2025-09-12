@@ -1,0 +1,21 @@
+#h1-new {
+  text-align: center;
+  margin-top: 10px;
+  color: $forest;
+}
+
+.container-new {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-fields {
+  padding: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid $forest;
+  border-radius: 5px;
+  width: 40vw
+}
