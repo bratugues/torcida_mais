@@ -15,8 +15,10 @@
         <h5 class="label-text">Hosted by:</h5>
         <p class="main-text"><i class="fa-solid fa-user"></i> <%= @event.user.username %></p>
         <%# icone camisa de time %>
+        <h5 class="label-text">Match:</h5>
+        <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.match.title%></p>
         <h5 class="label-text">Event team:</h5>
-        <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.team%></p>
+        <p class="main-text"><i class="fa-solid fa-users"></i> <%= @event.team%></p>
       </div>
 
       <%event_end_time = @event.date + 3.hours%>
@@ -43,7 +45,7 @@
 
     <div class="col-12 col-lg-4">
       <div class="sticky">
-        <div class="action-card card-custom">
+        <div class="action-card card-custom text-center">
           <%# card position sticky %>
           <%# botao de confirmar presenca %>
           <%if @user_in_event%>
