@@ -4,8 +4,12 @@ class EventsController < ApplicationController
     @events = Event.all
 
     if params[:query].present?
-      sql_subquery = "name ILIKE :query OR address ILIKE :query"
-      @events = @events.where(sql_subquery, query: "%#{params[:query]}%")
+      sql_subquery = <<~SQL
+        events.name ILIKE :query OR
+        events.address ILIKE :query OR
+        matches.title ILIKE :query
+      SQL
+      @events = @events.joins(:match).where(sql_subquery, query: "%#{params[:query]}%")
     end
 
   end
