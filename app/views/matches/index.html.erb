@@ -1,22 +1,40 @@
-<div data-controller="calendar">
-  <h1>Matches:</h1>
+<div data-controller="calendar" class="matches-page">
 
-
-  <hr>
-
-  <label for="date-selector">Select a date:</label>
-  <input type="date" id="date-selector" data-action="change->calendar#apply">
-
-  <%@matches.each do |match|%>
-    <%my_event_datetime = match.played_at %>
-    <%date_for_js = my_event_datetime.strftime('%Y-%m-%d') %>
-    <%date_for_user = my_event_datetime.strftime("%d/%m/%Y")%>
-    <%time_for_user = my_event_datetime.strftime("%H:%M")%>
-    <div data-calendar-target="match" data-date="<%= date_for_js %>">
-      <hr>
-      <p>Match: <%= match.title %></p>
-      <p>Date: <%= date_for_user %></p>
-      <p>Time: <%= time_for_user %></p>
+  <div class="matches-header">
+    <div class="filters">
+      <label for="date-selector" class="filters__label">Select a date</label>
+      <input type="date"
+             id="date-selector"
+             class="date-input"
+             data-action="change->calendar#apply">
     </div>
-  <%end%>
+
+    <%= link_to "← Back to dashboard", dashboard_path, class: "btn btn-secondary" %>
+  </div>
+
+  <div class="matches-list">
+    <% @matches.each do |match| %>
+      <% dt = match.played_at %>
+      <% date_for_js   = dt.strftime('%Y-%m-%d') %>
+      <% date_for_user = dt.strftime('%d/%m/%Y') %>
+      <% time_for_user = dt.strftime('%H:%M') %>
+
+      <div data-calendar-target="match"
+           data-date="<%= date_for_js %>"
+           class="match-card">
+
+        <div class="match-title"><%= match.title %></div>
+
+        <div class="match-meta">
+          <div class="chips">
+            <span class="chip"><%= date_for_user %></span>
+            <span class="chip"><%= time_for_user %></span>
+          </div>
+
+          <%= link_to "See events", events_path(q: match.title, on: date_for_js),
+                      class: "btn btn-xs btn-secondary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
