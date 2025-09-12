@@ -1,2 +1,22 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.form-control {
+  border: 2px solid $forest;
+}
+
+.form-control:focus {
+  border-color: $forest;
+  box-shadow: inset 0 2px 2px $forest, 0 2px 2px $forest;
+}
+
+.card {
+  background-color: #E0EFE6;
+  border-radius: 5px;
+  border: 2px solid $forest;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translate(4px, 4px);
+}

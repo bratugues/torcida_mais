@@ -1,6 +1,6 @@
 .btn-primary {
+  cursor: pointer;
   display: block;
-  width: 100%;
   padding: 14px 24px;
   border-radius: 9999px;
   background: #386150;
@@ -11,7 +11,13 @@
   line-height: 1;
   border: none;
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  transition: transform 0.3s ease-in-out;
+  font-family: $body-font;
+}
+
+.btn-primary:hover {
+  background-color: #386150;
+  transform: scale(1.01);
 }
 
  .btn-secondary {
@@ -26,7 +32,6 @@
   line-height: 1;
   border: none;
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
 
 .btn-login{

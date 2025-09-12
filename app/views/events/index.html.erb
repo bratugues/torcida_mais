@@ -5,7 +5,7 @@
           <%= form_with url: events_path, method: :get, class: "d-flex" do %>
             <%= text_field_tag :query,
                   params[:query],
-                  class: "form-control me-3",
+                  class: "form-control me-3 rounded-4 ",
                   placeholder: "Type a keyword"
             %>
             <%= submit_tag "Search", name: "", class: "btn btn-primary"%>
@@ -14,7 +14,7 @@
       <!-- Button always visible -->
       <%= link_to "Create new event",
                   new_event_path,
-                  class: "btn btn-secondary" %>
+                  class: "btn btn-secondary " %>
     </div>
 
   <div class="row mt-4">
@@ -26,13 +26,13 @@
           <div class="card w-100 text-center d-flex align-items-center" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title"><strong><%=event.match.title%></strong></h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary"><%=event.name%></h6>
-              <p class="card-text"><strong>Location:</strong> <%=event.address%></p>
-              <p class="card-text"><strong>Date:</strong> <%=date%></p>
-              <p class="card-text"><strong>Time:</strong> <%=time%></p>
+              <p class="card-subtitle mb-2 text-body-secondary"><%=event.name.capitalize%></p>
+              <h6 class="card-text"><strong>Location:</strong> <%=event.address%></h6>
+              <h6 class="card-text"><strong>Date:</strong> <%=date%></h6>
+              <h6 class="card-text"><strong>Time:</strong> <%=time%></h6>
               <%=link_to "See event", event_path(event), class:"card-link btn btn-primary mb-2"%>
               <%=button_to "I want to go", event_attendances_path(event),
-              method: :post, class: "btn btn-primary"%>
+              method: :post, class: "card-link btn btn-primary mb-2 w-100"%>
             </div>
           </div>
         </div>
