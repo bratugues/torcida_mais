@@ -22,35 +22,52 @@
         <%# deixe seu comentario %>
         <h3>Review this event:</h3>
         <%= simple_form_for [@event, @review] do |f| %>
-          <%= f.input :rating, as: :integer, placeholder: "Dê sua nota de 1 a 5" %>
-          <%= f.input :title, as: :text, placeholder: "Titulo da sua avaliação" %>
-          <%= f.input :content, as: :text, placeholder: "Deixe seu comentário" %>
-          <%= f.submit "Enviar", class: "btn btn-primary" %>
+          <%= f.input :rating, as: :integer, input_html: {min: 1, max: 5, step: 1}, placeholder: "Please rate from 1 to 5", class: "form-control-custom" %>
+          <%= f.input :title, as: :string, placeholder: "Review title", class: "form-control-custom" %>
+          <%= f.input :content, as: :text, placeholder: "Leave your comment", class: "form-control-custom" %>
+          <%= f.submit "Send", class: "btn btn-primary" %>
         <% end %>
         <%# lista de comentarios existentes %>
       </div>
+      <%if @event.user == current_user%>
+        <div class="edit-delete card-custom text-center">
+          <%= link_to "Delete event", event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+          <%= link_to "Edit event", edit_event_path, class: "btn btn-outline-warning"%>
+        </div>
+        <%end%>
     </div>
 
     <div class="col-12 col-lg-4">
-      <div class="action-card card-custom">
-        <%# card position sticky %>
-        <%# botao de confirmar presenca %>
-        <%= simple_form_for [@event, @attendance] do |f| %>
-          <%= f.submit "Confirm presence", class: "btn btn-custom-primary btn-primary" %>
-        <% end %>
-        <%# botoes secundarios chat e voltar %>
-        <div class="buttons mt-3 text-center">
-          <%= link_to "Back", events_path, class: "btn btn-custom-secondary"%>
-          <%= link_to "Chat", event_chats_path(@event), class: "btn btn-custom-secondary"%>
+      <div class="sticky">
+        <div class="action-card card-custom">
+          <%# card position sticky %>
+          <%# botao de confirmar presenca %>
+          <%= simple_form_for [@event, @attendance] do |f| %>
+            <%= f.submit "Confirm presence", class: "btn btn-custom-primary btn-primary" %>
+          <% end %>
+          <%# botoes secundarios chat e voltar %>
+          <div class="buttons mt-3 text-center">
+            <%= link_to "Back", events_path, class: "btn btn-custom-secondary"%>
+            <%= link_to "Chat", event_chats_path(@event), class: "btn btn-custom-secondary"%>
+          </div>
         </div>
-      </div>
 
-      <div class="participants-card card-custom">
-        <%# all confirmed users %>
-        <h5>Confirmed(<%=@attendances.count%>)</h5>
-        <%@attendances.each do |attendance|%>
-          <%=attendance.user.name%>
-        <%end%>
+        <%if @attendances.count == 0%>
+          <div class="participants-card card-custom">
+            <%# no users confirmed %>
+            <p>Nobody confirmed yet. Be the first one to confirm! </p>
+          </div>
+        <%else%>
+          <div class="participants-card card-custom">
+            <%# all confirmed users %>
+            <h5>Going (<%=@attendances.count%>)</h5>
+            <ul class="participants-list">
+              <%@attendances.each do |attendance|%>
+                <li class="participant-item"><%=attendance.user.name%></li>
+              <%end%>
+            </ul>
+          <%end%>
+        </div>
       </div>
     </div>
   </div>

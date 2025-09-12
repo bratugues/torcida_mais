@@ -29,10 +29,10 @@
   padding: 12px;
 }
 
-.action-card {
-  position: sticky;
-  top: 24px;
-}
+// .action-card {
+//   position: sticky;
+//   top: 24px;
+// }
 
 .event-title{
   font-size: 2.5rem; // Exemplo: 40px
@@ -49,4 +49,26 @@
   font-size: 0.875rem;
   color: $texto-secundario;
   margin-bottom: 4px;
+}
+
+.sticky{
+  position: sticky;
+  top: 24px;
+}
+
+.participants-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.participant-item{
+  background-color: $verde-secundario;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $texto-principal;
 }
