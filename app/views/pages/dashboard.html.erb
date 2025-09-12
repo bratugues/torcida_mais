@@ -63,21 +63,19 @@
           <% if @attendances.any? %>
             <div class="events-container">
               <% @attendances.each do |attendance| %>
-              <div class="event-card">
-                <p class="card-title"><%= attendance.event.name %></p>
-                <p class="card-text"><%= attendance.event.date&.strftime("%d/%m - %H:%M") %></p>
+                <div class="event-card position-relative">
+                  <%= link_to "", event_path(attendance.event), class: "stretched-link" %>
 
-                <div class="d-flex align-items-center justify-content-between">
-                  <span class="participants">
-                    <i class="fa-solid fa-users"></i>
-                    <%= attendance.event.attendances.count %>
-                  </span>
-                  <%= link_to "Cancel presence",
-                      attendance_path(attendance),
-                      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                      class: "btn btn-sm btn-outline-dark rounded-pill" %>
+                  <p class="card-title"><%= attendance.event.name %></p>
+                  <p class="card-text"><%= attendance.event.date&.strftime("%d/%m - %H:%M") %></p>
+
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span class="participants">
+                      <i class="fa-solid fa-users"></i>
+                      <%= pluralize(attendance.event.attendances.count, "attendee") %>
+                    </span>
+                  </div>
                 </div>
-              </div>
               <% end %>
             </div>
           <% else %>
