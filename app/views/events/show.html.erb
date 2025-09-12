@@ -18,17 +18,21 @@
         <h5 class="label-text">Event team:</h5>
         <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.team%></p>
       </div>
-      <div class="review-card card-custom mt-3">
-        <%# deixe seu comentario %>
-        <h3>Review this event:</h3>
-        <%= simple_form_for [@event, @review] do |f| %>
-          <%= f.input :rating, as: :integer, input_html: {min: 1, max: 5, step: 1}, placeholder: "Please rate from 1 to 5", class: "form-control-custom" %>
-          <%= f.input :title, as: :string, placeholder: "Review title", class: "form-control-custom" %>
-          <%= f.input :content, as: :text, placeholder: "Leave your comment", class: "form-control-custom" %>
-          <%= f.submit "Send", class: "btn btn-primary" %>
-        <% end %>
-        <%# lista de comentarios existentes %>
-      </div>
+
+      <%event_end_time = @event.date + 3.hours%>
+      <%if Time.current > event_end_time && @user_has_attended%>
+        <div class="review-card card-custom mt-3">
+          <%# deixe seu comentario %>
+          <h3>Review this event:</h3>
+          <%= simple_form_for [@event, @review] do |f| %>
+            <%= f.input :rating, as: :integer, input_html: {min: 1, max: 5, step: 1}, placeholder: "Please rate from 1 to 5", class: "form-control-custom" %>
+            <%= f.input :title, as: :string, placeholder: "Review title", class: "form-control-custom" %>
+            <%= f.input :content, as: :text, placeholder: "Leave your comment", class: "form-control-custom" %>
+            <%= f.submit "Send", class: "btn btn-primary" %>
+          <% end %>
+          <%# lista de comentarios existentes %>
+        </div>
+      <%end%>
       <%if @event.user == current_user%>
         <div class="edit-delete card-custom text-center">
           <%= link_to "Delete event", event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
