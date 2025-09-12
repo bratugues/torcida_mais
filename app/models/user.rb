@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :events
   has_one_attached :photo
+  validates :location, presence: true
   validates :bar_name, :bar_address, presence: true, if: :bar?
 
   def average_event_rating

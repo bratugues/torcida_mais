@@ -1,4 +1,91 @@
-.calendar{
-  border: 2px solid black;
-  height: 200px;
+// .calendar{
+//   border: 2px solid black;
+//   height: 200px;
+//   margin: 12px auto;
+//   max-width: 600px;
+//   width: 100%;
+// }
+
+.matches-page {
+  padding: 1.25rem 0;
+}
+
+.matches-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .filters__label {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .date-input {
+    width: 220px;
+  }
+}
+
+
+.matches-list {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: 1 coluna */
+  gap: 1rem;
+  margin-top: .75rem;
+}
+
+@media (min-width: 992px) {
+  .matches-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+.match-card {
+  width: 100%;
+  margin: 0;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+
+  .match-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: .5rem;
+    color: #1d1b16;
+  }
+
+  .match-meta {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+
+    .chips {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .chip {
+      display: inline-block;
+      padding: .25rem .6rem;
+      border-radius: 9999px;
+      background: #FAF6E9;
+      border: 1px solid rgba(0,0,0,.08);
+      font-size: .85rem;
+      line-height: 1;
+      color: #3a362e;
+    }
+
+    .btn {
+      margin-left: auto;
+    }
+  }
 }
