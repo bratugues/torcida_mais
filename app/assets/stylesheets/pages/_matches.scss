@@ -5,23 +5,29 @@
 //   max-width: 600px;
 //   width: 100%;
 // }
-
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: none !important; // remove qualquer fundo herdado
+}
 .matches-page {
-  background-image: asset-url("campo.png");
+  background-image: url("campo.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
+  margin: 0;
   padding: 2rem;
+  width: 100%;
 
-  
   .card {
     background-color: rgba(255, 255, 255, 0.9);
     border: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
-  // texto legível sobre o fundo
   h1, h2, h3, p {
     color: #154D71;
   }
