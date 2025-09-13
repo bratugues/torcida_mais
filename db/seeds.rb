@@ -3,19 +3,17 @@ Match.destroy_all
 User.destroy_all
 
 
-
-
 rodada_brasileirao = [
-  { home: "Fluminense",    away: "Corinthians",   played_at: "2025-09-13 21:00:00" },
-  { home: "Grêmio",        away: "Mirassol",      played_at: "2025-09-13 16:00:00" },
-  { home: "Fortaleza",     away: "Vitória",       played_at: "2025-09-13 16:00:00" },
-  { home: "Palmeiras",     away: "Internacional", played_at: "2025-09-13 18:30:00" },
-  { home: "Red Bull Bragantino",    away: "Sport",         played_at: "2025-09-14 11:00:00" },
-  { home: "Atlético Mineiro",   away: "Santos",        played_at: "2025-09-14 16:00:00" },
-  { home: "Juventude",     away: "Flamengo",      played_at: "2025-09-14 16:00:00" },
-  { home: "São Paulo",     away: "Botafogo",      played_at: "2025-09-14 17:30:00" },
-  { home: "Vasco da Gama",         away: "Ceará",         played_at: "2025-09-14 20:30:00" },
-  { home: "Bahia",         away: "Cruzeiro",      played_at: "2025-09-15 20:00:00" }
+  { home: "Fluminense",    away: "Corinthians",   played_at: "2025-09-13 18:00:00" },
+  { home: "Grêmio",        away: "Mirassol",      played_at: "2025-09-13 13:00:00" },
+  { home: "Fortaleza",     away: "Vitória",       played_at: "2025-09-13 13:00:00" },
+  { home: "Palmeiras",     away: "Internacional", played_at: "2025-09-13 15:30:00" },
+  { home: "Red Bull Bragantino",    away: "Sport",         played_at: "2025-09-14 08:00:00" },
+  { home: "Atlético Mineiro",   away: "Santos",        played_at: "2025-09-14 13:00:00" },
+  { home: "Juventude",     away: "Flamengo",      played_at: "2025-09-14 13:00:00" },
+  { home: "São Paulo",     away: "Botafogo",      played_at: "2025-09-14 14:30:00" },
+  { home: "Vasco da Gama",         away: "Ceará",         played_at: "2025-09-14 17:30:00" },
+  { home: "Bahia",         away: "Cruzeiro",      played_at: "2025-09-15 17:00:00" }
 ]
 
 
