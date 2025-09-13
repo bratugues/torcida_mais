@@ -9,7 +9,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @my_matches = Match.where("team_1 = :team or team_2 = :team", team: current_user.team)
+    my_club = current_user.club
+    @my_matches = Match.where("home_team_id = :club_id OR away_team_id = :club_id", club_id: my_club.id)
 
     @other_matches = Match.where("played_at >= ?", Time.current)
                           .order(:played_at)
