@@ -5,22 +5,28 @@
 //   max-width: 600px;
 //   width: 100%;
 // }
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-  background: none !important; // remove qualquer fundo herdado
-}
+
 .matches-page {
-  background-image: url("campo.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
   min-height: 100vh;
   margin: 0;
   padding: 2rem;
   width: 100%;
+  z-index: 0;
+
+  background: none;
+}
+
+.matches-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("campo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  z-index: -1;
 
   .card {
     background-color: rgba(255, 255, 255, 0.9);
@@ -71,44 +77,37 @@ html, body {
 
 
 .match-card {
-  width: 100%;
-  margin: 0;
-  background: #fff;
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
-  border: 1px solid rgba(0,0,0,.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // centraliza o conteúdo e o botão na altura
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  .match-info {
+    display: flex;
+    flex-direction: column;
+  }
 
   .match-title {
-    font-weight: 700;
-    font-size: 1.05rem;
-    margin-bottom: .5rem;
-    color: #1d1b16;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
   }
 
   .match-meta {
     display: flex;
+    gap: 0.5rem;
     align-items: center;
-    gap: .75rem;
+  }
 
-    .chips {
-      display: flex;
-      gap: .5rem;
-    }
-
-    .chip {
-      display: inline-block;
-      padding: .25rem .6rem;
-      border-radius: 9999px;
-      background: #FAF6E9;
-      border: 1px solid rgba(0,0,0,.08);
-      font-size: .85rem;
-      line-height: 1;
-      color: #3a362e;
-    }
-
-    .btn {
-      margin-left: auto;
-    }
+  .chip {
+    background-color: #f8f5ef;
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
   }
 }
