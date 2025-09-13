@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_13_141214) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_13_183903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,10 +78,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_13_141214) do
   create_table "matches", force: :cascade do |t|
     t.string "title"
     t.datetime "played_at"
-    t.string "team_1"
-    t.string "team_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "home_team_id", null: false
+    t.bigint "away_team_id", null: false
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -143,6 +145,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_13_141214) do
   add_foreign_key "events", "clubs"
   add_foreign_key "events", "matches"
   add_foreign_key "events", "users"
+  add_foreign_key "matches", "clubs", column: "away_team_id"
+  add_foreign_key "matches", "clubs", column: "home_team_id"
   add_foreign_key "messages", "events"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "events"
