@@ -18,7 +18,7 @@
         <h5 class="label-text">Match:</h5>
         <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.match.title%></p>
         <h5 class="label-text">Event team:</h5>
-        <p class="main-text"><i class="fa-solid fa-users"></i> <%= @event.team%></p>
+        <p class="main-text"><i class="fa-solid fa-users"></i> <%= @event.club.name%></p>
       </div>
 
       <%event_end_time = @event.date + 3.hours%>
