@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_11_170913) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_13_183903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_11_170913) do
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
+  create_table "clubs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -63,6 +69,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_11_170913) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.datetime "date"
+    t.bigint "club_id", null: false
+    t.index ["club_id"], name: "index_events_on_club_id"
     t.index ["match_id"], name: "index_events_on_match_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -70,10 +78,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_11_170913) do
   create_table "matches", force: :cascade do |t|
     t.string "title"
     t.datetime "played_at"
-    t.string "team_1"
-    t.string "team_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "home_team_id", null: false
+    t.bigint "away_team_id", null: false
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -118,10 +128,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_11_170913) do
     t.string "name"
     t.string "username"
     t.string "location"
-    t.string "team"
     t.boolean "bar"
+    t.string "team"
     t.string "bar_name"
     t.string "bar_address"
+    t.bigint "club_id", null: false
+    t.index ["club_id"], name: "index_users_on_club_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -130,10 +142,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_11_170913) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attendances", "events"
   add_foreign_key "attendances", "users"
+  add_foreign_key "events", "clubs"
   add_foreign_key "events", "matches"
   add_foreign_key "events", "users"
+  add_foreign_key "matches", "clubs", column: "away_team_id"
+  add_foreign_key "matches", "clubs", column: "home_team_id"
   add_foreign_key "messages", "events"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "events"
   add_foreign_key "reviews", "users"
+  add_foreign_key "users", "clubs"
 end
