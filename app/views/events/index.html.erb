@@ -25,7 +25,7 @@
       <div class="col-4 mb-3 d-flex">
           <div class="card w-100 text-center d-flex align-items-center" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title"><strong><%=event.match.title%></strong></h5>
+              <h5 class="card-title"><strong><%= image_tag event.match.home_team.shield_path, width: 40 %><%=event.match.title%><%= image_tag event.match.away_team.shield_path, width:40%></strong></h5>
               <p class="card-subtitle mb-2 text-body-secondary"><%=event.name.capitalize%></p>
               <h6 class="card-text"><strong>Location:</strong> <%=event.address%></h6>
               <h6 class="card-text"><strong>Date:</strong> <%=date%></h6>
