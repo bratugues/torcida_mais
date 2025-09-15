@@ -5,7 +5,7 @@
         <h2>Sign up</h2>
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= f.error_notification %>
-              <div class="form-inputs">
+              <div class="form-inputs" data-controller="form">
                 <%= f.input :name,
                             required: false,
                             autofocus: true %>
@@ -27,6 +27,15 @@
                             required: true,
                             input_html: { autocomplete: "new-password" } %>
                 <%= f.association :club %>
+                <%= f.input :bar, as: :boolean, label: "I am a bar", input_html: { data: { action: "input->form#toggle" } } %>
+                <div data-form-target="extra" class="d-none mt-2">
+                  <%= f.input :bar_name,
+                              required: true,
+                              autofocus: true %>
+                  <%= f.input :bar_address,
+                              required: true,
+                              autofocus: true %>
+                </div>
               </div>
 
               <div class="form-actions">

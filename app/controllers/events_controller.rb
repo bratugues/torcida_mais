@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :require_non_bar, only: [:my]
 
   def index
     @events = Event.all

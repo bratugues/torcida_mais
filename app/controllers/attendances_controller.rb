@@ -1,5 +1,6 @@
 class AttendancesController < ApplicationController
   before_action :set_event, only: [:create]
+  before_action :require_non_bar
 
   def index
     @attendances = current_user.attendances
