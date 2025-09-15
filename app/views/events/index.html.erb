@@ -30,11 +30,16 @@
       <div class="col-12 col-lg-4 mb-3 d-flex">
           <div class="card w-100 text-center d-flex align-items-center" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title"><strong><%= image_tag event.match.home_team.shield_path, width: 40 %><%=event.match.title%><%= image_tag event.match.away_team.shield_path, width:40%></strong></h5>
+              <div class="card-title">
+              <p><%= image_tag event.match.home_team.shield_path, width: 40 %> x <%= image_tag event.match.away_team.shield_path, width:40%></p>
+                <h5><%=event.match.title%></h5>
+              </div>
               <p class="card-subtitle mb-2 text-body-secondary"><%=event.name.capitalize%></p>
-              <h6 class="card-text"><strong>Location:</strong> <%=event.address%></h6>
-              <h6 class="card-text"><strong>Date:</strong> <%=date%></h6>
-              <h6 class="card-text"><strong>Time:</strong> <%=time%></h6>
+              <div class="event-info my-3 text-start">
+                <h6 class="card-text"><strong><i class="fa-solid fa-location-dot"></i></i></strong> <%=event.address%></h6>
+                <h6 class="card-text"><strong><i class="fa-regular fa-calendar"></i></strong> <%=date%></h6>
+                <h6 class="card-text"><strong><i class="fa-regular fa-clock"></i></strong> <%=time%></h6>
+              </div>
               <%=link_to "See event", event_path(event), class:"card-link btn btn-primary mb-2"%>
               <%=button_to "I want to go", event_attendances_path(event),
               method: :post, class: "card-link btn btn-primary mb-2 w-100"%>
