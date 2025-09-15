@@ -8,7 +8,7 @@
       </div>
 
       <div class="user-body">
-        <h3>Coming up for <%= current_user.team %></h3>
+        <h3>Coming up for <%= current_user.club.name %></h3>
           <% if @my_matches.any? %>
             <% @my_matches.each do |match| %>
               <% dt = match.played_at %>
@@ -58,7 +58,7 @@
       </div>
 
 
-      <div class="user-confirmed-events">
+      <div class="user-confirmed-events mb-4">
         <h2>Your confirmed events</h2>
           <% if @attendances.any? %>
             <div class="events-container">

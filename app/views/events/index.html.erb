@@ -1,9 +1,15 @@
 <div class="container py-4">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="mb-0 main-blue-text">Events</h1>
-        <%= link_to "Create new event",
-                    new_event_path,
-                    class: "btn btn-secondary " %>
+        <div>
+          <h1 class="mb-0 main-blue-text">Events</h1>
+            <div class="d-flex align-items-center text-muted mt-1">
+              <i class="fa-solid fa-location-dot me-2"></i>
+              <span><%= current_user.location %></span>
+            </div>
+          </div>
+
+
+          <%= link_to "Create new event", new_event_path, class: "btn btn-secondary" %>
       </div>
 
 
@@ -30,10 +36,13 @@
               <h6 class="card-text"><strong>Date:</strong> <%=date%></h6>
               <h6 class="card-text"><strong>Time:</strong> <%=time%></h6>
               <%=link_to "See event", event_path(event), class:"card-link btn btn-primary mb-2"%>
-              <%=button_to "I want to go", event_attendances_path(event),
-              method: :post, class: "card-link btn btn-primary mb-2 w-100"%>
+              <% unless current_user.bar? %>
+                <%=button_to "I want to go", event_attendances_path(event),
+                method: :post, class: "card-link btn btn-primary mb-2 w-100"%>
+              <% end %>
             </div>
           </div>
         </div>
     <%end%>
   </div>
+</div>
