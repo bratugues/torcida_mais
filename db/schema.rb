@@ -129,8 +129,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_15_193103) do
     t.string "name"
     t.string "username"
     t.string "location"
-    t.string "team"
     t.boolean "bar"
+    t.string "team"
     t.string "bar_name"
     t.string "bar_address"
     t.bigint "club_id", null: false

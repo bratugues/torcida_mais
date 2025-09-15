@@ -28,8 +28,12 @@
       <%date = my_event_datetime.strftime("%d/%m/%Y")%>
       <%time = my_event_datetime.strftime("%H:%M") %>
       <div class="col-12 col-lg-4 mb-3 d-flex">
-          <div class="card w-100 text-center d-flex align-items-center" style="width: 18rem;">
+          <div class="card w-100 text-center">
             <div class="card-body">
+              <div class="card-date d-flex justify-content-between">
+                <p class="pill"> Brasileirão </p>
+                <p><%=date%></p>
+              </div>
               <div class="card-title">
               <p><%= image_tag event.match.home_team.shield_path, width: 40 %> x <%= image_tag event.match.away_team.shield_path, width:40%></p>
                 <h5><%=event.match.title%></h5>

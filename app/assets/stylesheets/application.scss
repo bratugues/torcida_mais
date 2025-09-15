@@ -6,7 +6,7 @@
 // External libraries
 @import "bootstrap";
 @import "font-awesome";
-@import "flatpickr/dist/flatpickr.min.css";
+@import "flatpickr.min.css";
 
 // Your CSS partials
 @import "components/button";
@@ -22,3 +22,4 @@
 @import "pages/dashboard";
 @import "components/footer";
 @import "layout/layout";
+@import "pages/chat"
