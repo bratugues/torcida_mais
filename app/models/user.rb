@@ -11,6 +11,20 @@ class User < ApplicationRecord
   def average_event_rating
     reviews.average(:rating)
   end
+
+  Cities = [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Belo Horizonte",
+    "Salvador",
+    "Brasília",
+    "Recife",
+    "Porto Alegre",
+    "Curitiba",
+    "Fortaleza",
+    "Manaus"
+  ]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
