@@ -1,12 +1,25 @@
 <div class="container home-hero">
-  <div class="logo">
-    <h1 id="logo">Torcida +</h1>
-  </div>
-  <div class="copy">
-    <h3>Com o Torcida+, ninguém assiste futebol sozinho.</h3>
-  </div>
-  <div class="actions">
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %>
-    <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
+  <div class="hero-glass">
+    <!-- Título -->
+    <h1 class="logo">Football is collective. So is the crowd.</h1>
+
+   <div class="hero-text">
+      <p class="text-mobile">
+        With Torcida+, every goal becomes a meeting, every match becomes a celebration.
+        Come experience football as it should be: together.
+      </p>
+      <p class="text-desktop">
+        With Torcida+, football goes beyond the field. Every goal becomes a meeting of friends,
+        every victory turns into a shared memory, and every match is a true celebration.
+        Here, the crowd is not just an audience — it’s the soul of the game.
+        Come experience football the way it was meant to be: passionate, collective, and unforgettable.
+      </p>
+    </div>
+
+    <!-- Ações -->
+    <div class="actions">
+      <%= link_to "👉 Create your free account", new_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-secondary" %>
+    </div>
   </div>
 </div>
