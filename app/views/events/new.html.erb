@@ -5,6 +5,10 @@
     <%= simple_form_for @event do |f| %>
       <%= f.input :name, label: "Event name:" %>
       <%= f.input :address, label: "Address:" %>
+      <%= f.input :city,
+                  as: :select,
+                  collection: User::Cities,
+                  label: "City:" %>
       <%= f.input :date, label: "Date:"%>
       <%= f.input :capacity, label: "Capacity:"%>
       <%= f.input :price, label: "Price:"%>
