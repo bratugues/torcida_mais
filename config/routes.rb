@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   delete "/users", to: "devise/registrations#destroy", as: :destroy_user_registration
   resources :events, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
