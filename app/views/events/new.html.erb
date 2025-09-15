@@ -1,4 +1,4 @@
-<h1 id="h1-new">Create Event</h1>
+<h1 class="h1-new">Create Event</h1>
 
 <div class="container-new">
   <div class="text-fields">
@@ -16,7 +16,7 @@
       <%= f.association :club, required: true, :prompt => "Select the team" %>
       <%= f.input :description, label: "Description:"%>
 
-      <%= f.submit :submit, label: "Submit", class: "btn-primary"%>
+      <%= f.submit "Create event", class: "btn-primary w-100"%>
     <% end %>
   </div>
 </div>
