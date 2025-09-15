@@ -1,87 +1,148 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 offset-sm-3">
-      <div class="user-header">
-        <h1>Hi, <%= current_user.name %></h1>
-        <i class="fa-solid fa-location-dot"></i>
-        <%= current_user.location %>
-      </div>
+<div class="container-fluid p-3">
+  <div class="row g-4">
 
-      <div class="user-body">
-        <h3>Coming up for <%= current_user.club.name %></h3>
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
+        <%# imagem grande do usuário / clube %>
+        <%= image_tag "torcidas/torcida_palmeiras.png", class: "w-100 object-fit-cover", style: "height: 620px;" %>
+        <div class="card-body">
+          <h1 class="fw-bold mb-1">Olá, <%= current_user.name %></h1>
+          <div class="text-muted d-flex align-items-center">
+            <i class="fa-solid fa-location-dot me-2"></i>
+            <span><%= current_user.location %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm rounded-4 border-success-subtle mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="mb-0">Próximos jogos: <%= current_user.club.name %></h3>
+            <i class="fa-regular fa-futbol"></i>
+          </div>
+
           <% if @my_matches.any? %>
-            <% @my_matches.each do |match| %>
-              <% dt = match.played_at %>
-              <hr>
-              <p>Match: <%= match.title %></p>
-              <% if dt.present? %>
-                <p>Date: <%= dt.strftime("%d/%m/%Y") %></p>
-                <p>Time: <%= dt.strftime("%H:%M") %></p>
-              <% end %>
-            <% end %>
-          <% else %>
-            <p>No matches for your team found.</p>
-          <% end %>
-          <%= link_to "Find an event", events_path, class: "btn btn-secondary" %>
-      </div>
+            <div class="vstack gap-3">
+              <% @my_matches.each do |match| %>
+                <% dt = match.played_at %>
+                  <div class="card rounded-4 border shadow-sm">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                      <!-- Time da casa -->
+                      <div class="text-center flex-fill">
+                        <%= image_tag match.home_team.shield_path, class: "img-fluid mb-1", style: "height:40px;" %>
+                        <div class="fw-bold"><%= match.home_team.name %></div>
+                      </div>
 
-      <div class="user-body">
-        <h3>
-          Other matches
-          <button class="btn btn-sm btn-outline-dark btn-lg rounded-pill ms-2"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#otherMatches"
-                  aria-expanded="false"
-                  aria-controls="otherMatches">
-            Show
-          </button>
-        </h3>
+                      <!-- Data/Hora -->
+                      <div class="text-center flex-fill">
+                        <% if match.played_at.present? %>
+                          <div class="fw-semibold"><%= match.played_at.strftime("%d/%m") %></div>
+                          <small class="text-muted"><%= match.played_at.strftime("%H:%M") %></small>
+                        <% end %>
+                      </div>
 
-        <div class="collapse" id="otherMatches">
-          <% if @other_matches.any? %>
-            <% @other_matches.each do |match| %>
-              <% dt = match.played_at %>
-              <hr>
-              <p>Match: <%= match.title %></p>
-              <% if dt.present? %>
-                <p>Date: <%= dt.strftime("%d/%m/%Y") %></p>
-                <p>Time: <%= dt.strftime("%H:%M") %></p>
+                      <!-- Time visitante -->
+                      <div class="text-center flex-fill">
+                        <%= image_tag match.away_team.shield_path, class: "img-fluid mb-1", style: "height:40px;" %>
+                        <div class="fw-bold"><%= match.away_team.name %></div>
+                      </div>
+                    </div>
+                  </div>
               <% end %>
-            <% end %>
+            </div>
           <% else %>
-            <p>No upcoming matches.</p>
+            <p class="text-muted">Sem jogos para o seu time.</p>
           <% end %>
 
-          <%= link_to "See all upcoming matches", matches_path, class: "btn btn-secondary mt-2" %>
+          <div class="d-grid mt-3">
+            <%= link_to "Buscar eventos", events_path, class: "btn btn-secondary rounded-pill" %>
+          </div>
         </div>
       </div>
 
+      <div class="card shadow-sm rounded-4 border-success-subtle">
+        <div class="card-body">
+          <h3 class="mb-3">Eventos confirmados</h3>
 
-      <div class="user-confirmed-events mb-4">
-        <h2>Your confirmed events</h2>
           <% if @attendances.any? %>
-            <div class="events-container">
+            <div class="row row-cols-1 g-3">
               <% @attendances.each do |attendance| %>
-                <div class="event-card position-relative">
-                  <%= link_to "", event_path(attendance.event), class: "stretched-link" %>
-
-                  <p class="card-title"><%= attendance.event.name %></p>
-                  <p class="card-text"><%= attendance.event.date&.strftime("%d/%m - %H:%M") %></p>
-
-                  <div class="d-flex align-items-center justify-content-between">
-                    <span class="participants">
-                      <i class="fa-solid fa-users"></i>
-                      <%= pluralize(attendance.event.attendances.count, "attendee") %>
-                    </span>
+                <div class="col">
+                  <div class="card rounded-4 shadow-sm position-relative">
+                    <%= link_to "", event_path(attendance.event), class: "stretched-link" %>
+                    <div class="card-body">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="text-center border rounded-3 px-3 py-2">
+                          <div class="fw-bold"><%= attendance.event.date&.strftime("%d/%m") %></div>
+                          <small class="text-muted"><%= attendance.event.date&.strftime("%H:%M") %></small>
+                        </div>
+                        <div>
+                          <p class="fw-semibold mb-1"><%= attendance.event.name %></p>
+                          <small class="text-muted d-block">
+                            <i class="fa-regular fa-map me-1"></i>
+                            <%= attendance.event.address %>
+                          </small>
+                          <small class="text-muted">
+                            <i class="fa-solid fa-users me-1"></i>
+                            <%= pluralize(attendance.event.attendances.count, "confirmado") %>
+                          </small>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               <% end %>
             </div>
           <% else %>
-            <p>You don’t have confirmed events yet.</p>
+            <p class="text-muted mb-0">Você ainda não confirmou nenhum evento.</p>
           <% end %>
+        </div>
       </div>
     </div>
+
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm rounded-4 border-success-subtle mb-4">
+        <div class="card-body">
+          <h3 class="mb-3">Outros jogos</h3>
+
+          <% if @other_matches.any? %>
+            <div class="vstack gap-3">
+              <% @other_matches.each do |match| %>
+                <% dt = match.played_at %>
+                <div class="card rounded-4 border shadow-sm">
+                  <div class="card-body d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="badge bg-light text-dark">Vasco</span>
+                      <div class="text-center">
+                        <div class="fw-bold"><%= dt&.strftime("%d/%m") %></div>
+                        <small class="text-muted"><%= dt&.strftime("%H:%M") %></small>
+                      </div>
+                      <span class="badge bg-light text-dark">Santos</span>
+                    </div>
+                    <%= link_to "Detalhes", match_path(match), class: "btn btn-sm btn-outline-secondary rounded-pill" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="text-muted">Sem jogos futuros.</p>
+          <% end %>
+
+          <div class="d-grid mt-3">
+            <%= link_to "Ver todas as partidas", matches_path, class: "btn btn-secondary rounded-pill" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="card rounded-4 border-0 bg-light-subtle" style="height: 140px;">
+        <div class="card-body d-flex align-items-center justify-content-center text-muted">
+          <small>Espaço para destaque / métricas</small>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
