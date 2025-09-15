@@ -36,8 +36,10 @@
               <h6 class="card-text"><strong>Date:</strong> <%=date%></h6>
               <h6 class="card-text"><strong>Time:</strong> <%=time%></h6>
               <%=link_to "See event", event_path(event), class:"card-link btn btn-primary mb-2"%>
-              <%=button_to "I want to go", event_attendances_path(event),
-              method: :post, class: "card-link btn btn-primary mb-2 w-100"%>
+              <% unless current_user.bar? %>
+                <%=button_to "I want to go", event_attendances_path(event),
+                method: :post, class: "card-link btn btn-primary mb-2 w-100"%>
+              <% end %>
             </div>
           </div>
         </div>
