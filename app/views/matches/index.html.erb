@@ -9,7 +9,7 @@
              data-action="change->calendar#apply">
     </div>
 
-    <%= link_to "← Back to dashboard", dashboard_path, class: "btn btn-secondary" %>
+    <%= link_to " Back ", dashboard_path, class: "btn btn-secondary" %>
   </div>
 
   <div class="matches-list">
@@ -19,22 +19,18 @@
       <% date_for_user = dt.strftime('%d/%m/%Y') %>
       <% time_for_user = dt.strftime('%H:%M') %>
 
-      <div data-calendar-target="match"
-           data-date="<%= date_for_js %>"
-           class="match-card">
-
-        <div class="match-title"><%= match.title %></div>
-
-        <div class="match-meta">
-          <div class="chips">
-            <span class="chip"><%= date_for_user %></span>
-            <span class="chip"><%= time_for_user %></span>
-          </div>
-
-          <%= link_to "See events", events_path(q: match.title, on: date_for_js),
-                      class: "btn btn-xs btn-secondary" %>
-        </div>
+      <div class="match-card" data-calendar-target="match" data-date="<%= date_for_js %>">
+        <div class="match-info">
+      <div class="match-title"><%= match.title %></div>
+      <div class="match-meta">
+        <span class="chip"><%= date_for_user %></span>
+        <span class="chip"><%= time_for_user %></span>
       </div>
+    </div>
+
+    <%= link_to "See events", events_path(q: match.title, on: date_for_js),
+                class: "btn btn-secondary" %>
+  </div>
     <% end %>
   </div>
 </div>
