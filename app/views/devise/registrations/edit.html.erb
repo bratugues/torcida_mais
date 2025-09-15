@@ -26,7 +26,10 @@
   <div class="profile-fields">
     <%= f.input :name,     label: "Full name",  placeholder: "Enter your full name" %>
     <%= f.input :username, label: "Username",   placeholder: "Enter your username" %>
-    <%= f.input :location, label: "Location",   placeholder: "City / Neighborhood" %>
+    <%= f.input :location,
+                as: :select,
+                collection: User::Cities,
+                label: "Location",   placeholder: "City / Neighborhood" %>
   </div>
 
   <!-- Toggle Bar + conditional fields -->
