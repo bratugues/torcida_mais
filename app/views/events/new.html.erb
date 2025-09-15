@@ -1,18 +1,24 @@
-<h1 id="h1-new">Create Event</h1>
+<h1 class="h1-new">Create Event</h1>
 
 <div class="container-new">
   <div class="text-fields">
     <%= simple_form_for @event do |f| %>
       <%= f.input :name, label: "Event name:" %>
+      <%= f.association :match, label: "Match", :prompt => "Select the match..." %>
+      <%= f.association :club, required: true, :prompt => "Select the team..." %>
+      <%= f.input :city,
+                  as: :select,
+                  collection: User::Cities,
+                  label: "City:" %>
       <%= f.input :address, label: "Address:" %>
-      <%= f.input :date, label: "Date:"%>
+      <%= f.input :date, as: :string, label: "Date and Time:",  input_html: {
+              data: { controller: "flatpickr" },
+              placeholder: 'Select the date and time...'
+            }%>
       <%= f.input :capacity, label: "Capacity:"%>
       <%= f.input :price, label: "Price:"%>
-      <%= f.association :match, label: "Match", :prompt => "Select the match" %>
-      <%= f.association :club, required: true, :prompt => "Select the team" %>
       <%= f.input :description, label: "Description:"%>
-
-      <%= f.submit :submit, label: "Submit", class: "btn-primary"%>
+      <%= f.submit "Create event", class: "btn-primary w-100"%>
     <% end %>
   </div>
 </div>
