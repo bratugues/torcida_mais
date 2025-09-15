@@ -12,7 +12,9 @@
     <% if resource.photo&.attached? %>
       <%= cl_image_tag resource.photo.key, height: 300, width: 400, crop: :thumb, gravity: :face, class: "avatar-xl" %>
     <% else %>
-      <div class="avatar-xl avatar-placeholder"></div>
+      <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= image_tag "avatar-placeholder.png", crop: :thumb, gravity: :face, class: "avatar-xl" %>
+      </a>
     <% end %>
 
     <div class="mt-2">
