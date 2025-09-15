@@ -2,15 +2,36 @@ Event.destroy_all
 Match.destroy_all
 User.destroy_all
 
-user1 = User.create!(email: "joao123@gmail.com", password: "123123", )
 
-Match.create!(title:"Fluminense x Corinthians", played_at: "Sat, 13 Sep 2025 21:00:00 UTC +00:00", team_1: "Fluminense", team_2: "Corinthians")
-Match.create!(title:"Grêmio x Mirassol", played_at: "Sat, 13 Sep 2025 16:00:00 UTC +00:00", team_1: "Grêmio", team_2: "Mirassol")
-Match.create!(title:"Fortaleza x Vitória", played_at: "Sat, 13 Sep 2025 16:00:00 UTC +00:00", team_1: "Fortaleza", team_2: "Vitória")
-Match.create!(title:"Palmeiras x Internacional", played_at: "Sat, 13 Sep 2025 18:30:00 UTC +00:00", team_1: "Palmeiras", team_2: "Internacional")
-Match.create!(title:"Bragantino x Sport", played_at: "Sun, 14 Sep 2025 11:00:00 UTC +00:00", team_1: "Bragantino", team_2: "Sport")
-Match.create!(title:"Atlético-MG x Santos", played_at: "Sun, 14 Sep 2025 16:00:00 UTC +00:00", team_1: "Atlético-MG", team_2: "Santos")
-Match.create!(title:"Juventude x Flamengo", played_at: "Sun, 14 Sep 2025 16:00:00 UTC +00:00", team_1: "Juventude", team_2: "Flamengo")
-Match.create!(title:"São Paulo x Botafogo", played_at: "Sun, 14 Sep 2025 17:30:00 UTC +00:00", team_1: "São Paulo", team_2: "Botafogo")
-Match.create!(title:"Vasco x Ceará", played_at: "Sun, 14 Sep 2025 20:30:00 UTC +00:00", team_1: "Vasco", team_2: "Ceará")
-Match.create!(title:"Bahia x Cruzeiro", played_at: "Mon, 15 Sep 2025 20:00:00 UTC +00:00", team_1: "Bahia", team_2: "Cruzeiro")
+rodada_brasileirao = [
+  { home: "Fluminense",    away: "Corinthians",   played_at: "2025-09-13 18:00:00" },
+  { home: "Grêmio",        away: "Mirassol",      played_at: "2025-09-13 13:00:00" },
+  { home: "Fortaleza",     away: "Vitória",       played_at: "2025-09-13 13:00:00" },
+  { home: "Palmeiras",     away: "Internacional", played_at: "2025-09-13 15:30:00" },
+  { home: "Red Bull Bragantino",    away: "Sport",         played_at: "2025-09-14 08:00:00" },
+  { home: "Atlético Mineiro",   away: "Santos",        played_at: "2025-09-14 13:00:00" },
+  { home: "Juventude",     away: "Flamengo",      played_at: "2025-09-14 13:00:00" },
+  { home: "São Paulo",     away: "Botafogo",      played_at: "2025-09-14 14:30:00" },
+  { home: "Vasco da Gama",         away: "Ceará",         played_at: "2025-09-14 17:30:00" },
+  { home: "Bahia",         away: "Cruzeiro",      played_at: "2025-09-15 17:00:00" }
+]
+
+
+rodada_brasileirao.each do |match_data|
+  home_team = Club.find_by(name: match_data[:home])
+  away_team = Club.find_by(name: match_data[:away])
+  if home_team && away_team
+    # 3. Criar a partida usando os objetos que encontramos
+    Match.create!(
+      home_team: home_team,
+      away_team: away_team,
+      played_at: Time.parse(match_data[:played_at]),
+      title: "#{home_team.name} vs #{away_team.name}"
+    )
+    puts "Partida criada: #{home_team.name} vs #{away_team.name}"
+  else
+    puts "AVISO: Não foi possível criar a partida '#{match_data[:home]}' vs '#{match_data[:away]}'. Um dos times não foi encontrado."
+  end
+end
+
+puts "✅ Partidas da rodada criadas com sucesso!"

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  belongs_to :club
   has_many :attendances
   has_many :reviews, dependent: :destroy
   has_many :messages

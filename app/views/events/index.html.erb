@@ -1,31 +1,30 @@
 <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="mb-0 main-blue-text">Events</h1>
-      <div class="d-flex justify-content between">
-          <%= form_with url: events_path, method: :get, class: "d-flex" do %>
-            <%= text_field_tag :query,
-                  params[:query],
-                  class: "form-control me-3 rounded-4 ",
-                  placeholder: "Type a keyword"
-            %>
-            <%= submit_tag "Search", name: "", class: "btn btn-primary"%>
-          <% end %>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="mb-0 main-blue-text">Events</h1>
+        <%= link_to "Create new event",
+                    new_event_path,
+                    class: "btn btn-secondary " %>
       </div>
-      <!-- Button always visible -->
-      <%= link_to "Create new event",
-                  new_event_path,
-                  class: "btn btn-secondary " %>
-    </div>
+
+
+    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control me-3 rounded-4 ",
+            placeholder: "Type a keyword"
+      %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary"%>
+    <% end %>
 
   <div class="row mt-4">
     <%@events.each do |event|%>
       <%my_event_datetime = event.date %>
       <%date = my_event_datetime.strftime("%d/%m/%Y")%>
       <%time = my_event_datetime.strftime("%H:%M") %>
-      <div class="col-4 mb-3 d-flex">
+      <div class="col-12 col-lg-4 mb-3 d-flex">
           <div class="card w-100 text-center d-flex align-items-center" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title"><strong><%=event.match.title%></strong></h5>
+              <h5 class="card-title"><strong><%= image_tag event.match.home_team.shield_path, width: 40 %><%=event.match.title%><%= image_tag event.match.away_team.shield_path, width:40%></strong></h5>
               <p class="card-subtitle mb-2 text-body-secondary"><%=event.name.capitalize%></p>
               <h6 class="card-text"><strong>Location:</strong> <%=event.address%></h6>
               <h6 class="card-text"><strong>Date:</strong> <%=date%></h6>

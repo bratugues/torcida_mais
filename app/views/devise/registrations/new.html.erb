@@ -26,8 +26,7 @@
                 <%= f.input :password_confirmation,
                             required: true,
                             input_html: { autocomplete: "new-password" } %>
-                <%= f.input :team, required: true, :collection => %w[Atlético\ Mineiro Bahia Botafogo Ceará Corinthians Cruzeiro Flamengo Fluminense Fortaleza Grêmio Internacional Juventude Mirassol Palmeiras Red\ Bull\ Bragantino Santos São\ Paulo Sport Vasco\ da\ Gama Vitória], :prompt => "Select your team" %>
-                <%= f.input :bar, label: "I am a bar or establishment", as: :boolean %>
+                <%= f.association :club %>
               </div>
 
               <div class="form-actions">

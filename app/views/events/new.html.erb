@@ -9,7 +9,7 @@
       <%= f.input :capacity, label: "Capacity:"%>
       <%= f.input :price, label: "Price:"%>
       <%= f.association :match, label: "Match", :prompt => "Select the match" %>
-      <%= f.input :team, required: true, :collection => %w[Atlético\ Mineiro Bahia Botafogo Ceará Corinthians Cruzeiro Flamengo Fluminense Fortaleza Grêmio Internacional Juventude Mirassol Palmeiras Red\ Bull\ Bragantino Santos São\ Paulo Sport Vasco\ da\ Gama Vitória], :prompt => "Select the team" %>
+      <%= f.association :club, required: true, :prompt => "Select the team" %>
       <%= f.input :description, label: "Description:"%>
 
       <%= f.submit :submit, label: "Submit", class: "btn-primary"%>
