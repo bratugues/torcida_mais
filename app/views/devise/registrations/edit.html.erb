@@ -10,8 +10,7 @@
   <!-- Avatar -->
   <div class="profile-avatar text-center">
     <% if resource.photo&.attached? %>
-      <%= image_tag resource.photo.variant(resize_to_fill: [96,96]).processed,
-                    class: "avatar-xl", alt: "Your avatar" %>
+      <%= cl_image_tag resource.photo.key, height: 300, width: 400, crop: :thumb, gravity: :face, class: "avatar-xl" %>
     <% else %>
       <div class="avatar-xl avatar-placeholder"></div>
     <% end %>
