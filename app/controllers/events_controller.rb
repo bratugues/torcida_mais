@@ -3,12 +3,13 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.includes(:club, :match)
-               .where("events.address ILIKE ?", "%#{current_user.location}%")
+               .where(city: current_user.location)
 
     if params[:query].present?
       sql_subquery = <<~SQL
         events.name ILIKE :query OR
         events.address ILIKE :query OR
+        events.city ILIKE :query OR
         matches.title ILIKE :query
       SQL
       @events = @events.joins(:match).where(sql_subquery, query: "%#{params[:query]}%")
@@ -67,6 +68,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :address, :date, :capacity, :price, :match, :club_id, :description)
+    params.require(:event).permit(:name, :address, :city, :date, :capacity, :price, :match, :club_id, :description)
   end
 end

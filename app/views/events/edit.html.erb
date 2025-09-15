@@ -11,6 +11,22 @@
       <%= f.input :team, label: "Choose the team:"%>
       <%= f.input :description, label: "Description:"%>
 
+<%= simple_form_for @event do |f| %>
+  <%= f.input :name, label: "Event name:" %>
+  <%= f.input :address, label: "Address:" %>
+  <%= f.input :city,
+                  as: :select,
+                  collection: User::Cities,
+                  label: "City:" %>
+  <%= f.input :date, label: "Date:"%>
+  <%= f.input :capacity, label: "Capacity:"%>
+  <%= f.input :price, label: "Price:"%>
+  <%= f.association :match, label: "Select the match" %>
+  <%= f.input :team, label: "Choose the team:"%>
+  <%= f.input :description, label: "Description:"%>
+
+  <%= f.submit :submit, label: "Update Event"%>
+<% end %>
       <%= f.submit "Update Event", class: "btn-primary w-100"%>
     <% end %>
   </div>
