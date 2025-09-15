@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    @events = Event.includes(:club, :match)
+               .where("events.address ILIKE ?", "%#{current_user.location}%")
 
     if params[:query].present?
       sql_subquery = <<~SQL
