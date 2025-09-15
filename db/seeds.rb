@@ -1,7 +1,28 @@
 Event.destroy_all
 Match.destroy_all
 User.destroy_all
+Club.destroy_all
 
+Club.create!(name: "Atlético Mineiro")
+Club.create!(name: "Bahia")
+Club.create!(name: "Botafogo")
+Club.create!(name: "Ceará")
+Club.create!(name: "Corinthians")
+Club.create!(name: "Cruzeiro")
+Club.create!(name: "Flamengo")
+Club.create!(name: "Fluminense")
+Club.create!(name: "Fortaleza")
+Club.create!(name: "Grêmio")
+Club.create!(name: "Internacional")
+Club.create!(name: "Juventude")
+Club.create!(name: "Mirassol")
+Club.create!(name: "Palmeiras")
+Club.create!(name: "Red Bull Bragantino")
+Club.create!(name: "Santos")
+Club.create!(name: "São Paulo")
+Club.create!(name: "Sport")
+Club.create!(name: "Vasco da Gama")
+Club.create!(name: "Vitória")
 
 rodada_brasileirao = [
   { home: "Fluminense",    away: "Corinthians",   played_at: "2025-09-13 18:00:00" },
