@@ -20,3 +20,10 @@
 .card:hover {
   transform: translate(4px, 4px);
 }
+
+.pill{
+  background-color: $verde-principal;
+  color: $snow;
+  border-radius: 16px;
+  padding: 4px;
+}
