@@ -2,8 +2,10 @@
 
   <div class="matches-header">
     <div class="filters">
-      <label for="date-selector" class="filters__label">Select a date</label>
+      <label for="date-selector" class="filters__label"><i class="fa-solid fa-calendar forest"></i></label>
       <input type="date"
+             data-controller="flatpickr"
+             placeholder="Select date"
              id="date-selector"
              class="date-input"
              data-action="change->calendar#apply">
@@ -12,7 +14,7 @@
     <%= link_to " Back ", dashboard_path, class: "btn btn-secondary" %>
   </div>
 
-  <div class="matches-list">
+  <div class="matches-list mt-2">
     <% @matches.each do |match| %>
       <% dt = match.played_at %>
       <% date_for_js   = dt.strftime('%Y-%m-%d') %>

@@ -1,0 +1,132 @@
+//* ===== My Events Page ===== */
+.my-events-page {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem 1rem;
+  width: 100%;
+  background: image-url("fut_my.png") center/cover no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 0;
+  }
+
+  .page-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn.btn-secondary {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* ===== LIST ===== */
+.my-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== CARD ===== */
+.event-card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .event-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+
+    .team-shield {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    }
+    .team-name {
+    font-weight: 600;
+    color: #030303;
+    }
+    .vs {
+      font-weight: bold;
+      color: #024d35;
+      font-size: 1rem;
+    }
+  }
+
+  .event-meta {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+
+  }
+
+  .btn.btn-secondary {
+    margin-top: 1rem;
+  }
+}
+
+/* ===== Glass effect (reutilizável) ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+  .my-events-page {
+    padding: 1rem;
+  }
+
+  .event-card {
+    padding: 1rem;
+  }
+
+  .event-title {
+    font-size: 1rem;
+
+    .team-shield {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .event-meta {
+    font-size: 0.85rem;
+  }
+
+  .btn.btn-secondary {
+    width: 100%;
+  }
+}
