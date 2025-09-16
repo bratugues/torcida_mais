@@ -1,41 +1,32 @@
-<div class="my-events-page container py-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="mb-0 main-blue-text">My Events</h1>
+<div class="container-fluid py-4 my-events-page">
+  <h1 class="page-title">My Events</h1>
+  <div class="text-center mb-4">
     <%= link_to "Create new event", new_event_path, class: "btn btn-secondary" %>
   </div>
 
   <div class="my-events-list">
     <% @events.each do |event| %>
-      <article class="event-card">
-        
-        <h5 class="event-title">
-          <%= image_tag event.match.home_team.shield_path, alt: event.match.home_team.name, class: "team-shield" %>
-          <span class="team-name home"><%= event.match.home_team.name %></span>
-          <span class="vs">vs</span>
-          <span class="team-name away"><%= event.match.away_team.name %></span>
-          <%= image_tag event.match.away_team.shield_path, alt: event.match.away_team.name, class: "team-shield" %>
-        </h5>
+      <div class="event-card glass-card">
+      <div class="event-title">
+        <div class="team">
+        <%= image_tag event.match.home_team.shield_path, class: "team-shield" %>
+        <span class="team-name"><%= event.match.home_team.name %></span>
+      </div>
 
+      <span class="vs">vs</span>
 
-        <% if event.name.present? %>
-          <p class="event-subtitle text-muted mb-1"><%= event.name %></p>
-        <% end %>
+      <div class="team">
+        <%= image_tag event.match.away_team.shield_path, class: "team-shield" %>
+        <span class="team-name"><%= event.match.away_team.name %></span>
+      </div>
+    </div>
 
+      <p class="event-meta"><%= event.name %></p>
+      <p class="event-meta"><strong>Location:</strong> <%= event.address %></p>
+      <p class="event-meta"><strong>Date:</strong> <%= event.date.strftime("%d/%m/%Y - %H:%M") %></p>
 
-        <div class="event-meta">
-          <p class="mb-1">
-            <strong>Location:</strong>
-            <%= event.address %>
-          </p>
-          <p class="mb-0">
-            <strong>Date:</strong>
-            <%= event.date.strftime("%d/%m/%Y") %> - <%= event.date.strftime("%H:%M") %>
-          </p>
-        </div>
-
-
-        <%= link_to "See event", event_path(event), class: "btn btn-primary mt-2" %>
-      </article>
+      <%= link_to "See event", event_path(event), class: "btn btn-secondary" %>
+  </div>
     <% end %>
   </div>
 </div>

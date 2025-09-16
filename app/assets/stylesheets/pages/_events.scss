@@ -1,136 +1,124 @@
-/* ===== MY EVENTS PAGE ===== */
+//* ===== My Events Page ===== */
 .my-events-page {
   position: relative;
   min-height: 100vh;
   margin: 0;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   width: 100%;
-  z-index: 0;
+  background: image-url("fut_my.png") center/cover no-repeat;
 
-  /* aplica o background usando helper do Rails */
-  background: image-url("my_events.png") center/cover no-repeat;
-
-  /* overlay escuro para contraste */
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: -1;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 0;
   }
 
-  /* container que envolve tudo */
-  &.container {
-    max-width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  /* título */
-  h1 {
+  .page-title {
     text-align: center;
     font-weight: 700;
-    margin-bottom: 2rem;
-    color: #030303;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
   }
 
-  h2, h3, p {
-    color: #030303;
-  }
-
-
-  .card {
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    border-radius: 14px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    margin: 0 auto 1.5rem auto; /* centraliza */
-    max-width: 800px;
+  .btn.btn-secondary {
+    position: relative;
+    z-index: 1;
   }
 }
 
-/* ===== BOTÕES ===== */
-.btn {
-  border-radius: 999px;
-  padding: 0.6rem 1.2rem;
-  font-weight: 600;
-}
-
-/* ===== LISTA DE EVENTOS ===== */
+/* ===== LIST ===== */
 .my-events-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 700px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* ===== CARD CUSTOM ===== */
+/* ===== CARD ===== */
 .event-card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: #111;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
-
-  padding: 1.5rem;
-  border-radius: 14px;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  align-items: center;
+  text-align: center;
 
   .event-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     font-size: 1.2rem;
     font-weight: 700;
+    margin-bottom: 1rem;
+
+    .team-shield {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .team {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    .team-shield {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
     }
-
+    .team-name {
+    font-weight: 600;
+    color: #030303;
+    }
     .vs {
       font-weight: bold;
       color: #024d35;
+      font-size: 1rem;
     }
   }
 
   .event-meta {
     font-size: 0.95rem;
-    line-height: 1.4;
+    margin-bottom: 0.5rem;
 
-    strong {
-      font-weight: 600;
-    }
   }
 
-  .btn {
-    align-self: flex-start;
-    padding: 0.5rem 1.2rem;
-    font-size: 0.9rem;
+  .btn.btn-secondary {
+    margin-top: 1rem;
   }
+}
+
+/* ===== Glass effect (reutilizável) ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 480px) {
+  .my-events-page {
+    padding: 1rem;
+  }
+
   .event-card {
     padding: 1rem;
-    gap: 0.8rem;
   }
 
   .event-title {
     font-size: 1rem;
 
     .team-shield {
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
     }
   }
 
@@ -138,8 +126,7 @@
     font-size: 0.85rem;
   }
 
-  .btn-secondary  {
+  .btn.btn-secondary {
     width: 100%;
-    text-align: center;
   }
 }
