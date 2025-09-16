@@ -1,25 +1,117 @@
-<div class="container home-hero">
-  <div class="hero-glass">
-    <!-- Título -->
-    <h1 class="logo">Football is collective. So is the crowd.</h1>
+<div class="containe">
+  <div class="home-hero">
+    <div class="hero-glass">
+      <!-- Título -->
+      <h1 class="logo">Football is collective. So is the crowd.</h1>
 
-   <div class="hero-text">
-      <p class="text-mobile">
-        With Torcida+, every goal becomes a meeting, every match becomes a celebration.
-        Come experience football as it should be: together.
-      </p>
-      <p class="text-desktop">
-        With Torcida+, football goes beyond the field. Every goal becomes a meeting of friends,
-        every victory turns into a shared memory, and every match is a true celebration.
-        Here, the crowd is not just an audience — it’s the soul of the game.
-        Come experience football the way it was meant to be: passionate, collective, and unforgettable.
-      </p>
-    </div>
+    <div class="hero-text">
+        <p class="text-mobile">
+          With Torcida+, every goal becomes a meeting, every match becomes a celebration.
+          Come experience football as it should be: together.
+        </p>
+        <p class="text-desktop">
+          With Torcida+, football goes beyond the field. Every goal becomes a meeting of friends,
+          every victory turns into a shared memory, and every match is a true celebration.
+          Here, the crowd is not just an audience — it’s the soul of the game.
+          Come experience football the way it was meant to be: passionate, collective, and unforgettable.
+        </p>
+      </div>
 
-    <!-- Ações -->
-    <div class="actions">
-      <%= link_to "👉 Create your free account", new_user_registration_path, class: "btn btn-primary" %>
-      <%= link_to "Log in", new_user_session_path, class: "btn btn-secondary" %>
+      <!-- Ações -->
+      <div class="actions">
+        <%= link_to "👉 Create your free account", new_user_registration_path, class: "btn btn-primary" %>
+        <%= link_to "Log in", new_user_session_path, class: "btn btn-secondary" %>
+      </div>
     </div>
   </div>
+
+
+
+
+  <div class="why-us">
+    <div class="why-us-title text-center">
+      <p class="why-us-title-text">Why choose our app?</p>
+      <p class="why-us-title-description">We transform the experience of watching football into unforgettable moments.</p>
+    </div>
+    <div class="why-us-card-container mt-5 text-center">
+
+      <div class="why-us-card">
+        <div class="icon-container d-flex align-items-center justify-content-center"><i class="fa-solid fa-location-dot"></i></div>
+        <h5 class="fw-bold">Local Events</h5>
+        <p class="fw-light">Find football events happening near you. Filter by city, neighborhood, or your favorite team.</p>
+      </div>
+
+      <div class="why-us-card">
+        <div class="icon-container d-flex align-items-center justify-content-center"><i class="fa-solid fa-users"></i></div>
+        <h5 class="fw-bold">Active Community</h5>
+        <p class="fw-light">Connect with other passionate fans. Make new friends who share the same love for the game.</p>
+      </div>
+
+      <div class="why-us-card">
+        <div class="icon-container d-flex align-items-center justify-content-center"><i class="fa-solid fa-calendar"></i></div>
+        <h5 class="fw-bold">Organize with Ease</h5>
+        <p class="fw-light">Create your own events in seconds. Choose the place, set the time, and invite other fans to join.</p>
+      </div>
+
+      <div class="why-us-card">
+        <div class="icon-container d-flex align-items-center justify-content-center"><i class="fa-regular fa-heart"></i></div>
+        <h5 class="fw-bold">Shared Passion</h5>
+        <p class="fw-light">Experience the thrill of football together. Celebrate goals, feel the tension of every save, and share unique moments.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="how-it-works">
+    <div class="how-it-works-content">
+      <div class="how-it-works-title">
+        <p class="hiw-title">How it works?</p>
+        <p class="hiw-title-description fw-light">Connect with other fans in your city in just 3 simple steps.</p>
+      </div>
+      <div class="how-it-works-cards-container">
+        <div class="how-it-works-card">
+          <div class="how-it-works-number">01</div>
+          <div class="how-it-works-card-content">
+            <h6 class="fs-4"><i class="fa-solid fa-magnifying-glass"></i> Find or Create</h6>
+            <p class="hiw-card-description">Search for events in your city or create your own for other fans to join.</p>
+          </div>
+        </div>
+        <div class="how-it-works-card">
+          <div class="how-it-works-number">02</div>
+          <div class="how-it-works-card-content">
+            <h6 class="fs-4"><i class="fa-solid fa-link"></i> Connect</h6>
+            <p class="hiw-card-description">Join events, chat with other fans, and build your own local supporter group.</p>
+          </div>
+        </div>
+        <div class="how-it-works-card">
+          <div class="how-it-works-number">03</div>
+          <div class="how-it-works-card-content">
+            <h6 class="fs-4"><i class="fa-solid fa-play"></i> Watch together</h6>
+            <p class="hiw-card-description">Show up at the arranged location and experience all the excitement of football with the crowd!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="how-it-works-image">
+      <%= image_tag "torcida_cartoon_home", class: "rounded-img"%>
+    </div>
+  </div>
+
+  <div class="call-to-action">
+    <div class="call-to-action-content">
+      <div class="call-to-action-text text-center">
+        <p class= "cta-title">Ready to join the crowd?</p>
+        <p class= "cta-description">Get started now and discover how much more fun it is to watch football together. Your next unforgettable experience is just a click away!</p>
+      </div>
+      <div class="call-to-action-buttons">
+        <%=link_to "Register now", new_user_registration_path, class: "register-btn"%>
+        <%=link_to "I already have an account", new_user_session_path, class: "login-btn"%>
+      </div>
+      <div class="call-to-action-bottom">
+        <p>Free • No commitments • Join thousands of fans</p>
+      </div>
+    </div>
+  </div>
+
 </div>
