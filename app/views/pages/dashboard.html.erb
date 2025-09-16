@@ -66,15 +66,16 @@
             <h3 class="mb-0">Confirmed events</h3>
               <div class="card-events">
                 <% if @attendances.any? %>
-                  <div class="row row-cols-1 row-cols-md-2 g-3">
+                  <div class="row g-4">
                     <% @attendances.each do |attendance| %>
                       <div class="col">
                         <div class="card rounded-4 shadow-sm position-relative h-100">
                           <%= link_to "", event_path(attendance.event), class: "stretched-link" %>
                           <div class="card-body">
                             <div class="d-flex align-items-center gap-3">
-                              <div class="text-center border rounded-3 px-3 py-2">
-                                <div class="fw-bold"><%= attendance.event.date&.strftime("%d/%m") %></div>
+                              <div class="text-center border rounded-3 px-2 py-1">
+                                <div class="fw-semibold"><%= attendance.event.date&.strftime("%d") %></div>
+                                <div class="fw-semibold"><%= attendance.event.date&.strftime("%b")&.upcase %></div>
                                 <small class="text-muted"><%= attendance.event.date&.strftime("%H:%M") %></small>
                               </div>
                               <div>
@@ -102,7 +103,7 @@
       </div>
 
       <div class="col-12 col-lg-4">
-        <div class="card shadow-sm rounded-4">
+        <div class="card shadow-sm border-0 rounded-4">
           <div class="other-matches">
             <% if @other_matches.any? %>
               <div class="vstack gap-4">
