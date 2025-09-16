@@ -185,6 +185,16 @@ html, body {
   padding: 5rem 0;
 }
 
+.why-us-title-text{
+  font-weight: bolder;
+  font-size: 50px;
+}
+
+.why-us-title-description{
+  color: #6C727F;
+  font-size: 20px;
+  font-weight: 300;
+}
 .why-us-card{
   flex: 0 1 280px;
   min-height: 320px;
@@ -196,6 +206,12 @@ html, body {
   align-items: center;
   flex-direction: column;
   gap: 1rem;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+  transition: all 0.3s ease-in-out;
+    &:hover{
+      box-shadow: 0 0 30px 5px rgba(43, 111, 71, 0.4);
+      transform: translateY(-8px)
+    }
 }
 
 .icon-container{
@@ -257,6 +273,10 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.how-it-works-title{
+  margin-bottom: 25px;
 }
 
 .rounded-img {
@@ -341,4 +361,16 @@ html, body {
 .cta-description{
   font-size: 25px;
   font-weight: 300;
+}
+
+.hiw-title{
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.hiw-title-description{
+  font-size: 18px;
+}
+.hiw-card-description{
+  font-weight: lighter;
 }
