@@ -1,6 +1,6 @@
 #messages {
   height: 50vh;
-  width: 95vw;
+  width: 95vw ;
   margin: 0 auto;
   border-radius: 5px;
   flex: 1;
@@ -21,4 +21,9 @@
 
 #username-message {
   font-size: 12px;
+}
+
+.chat-bg-color {
+  color: black;
+  background-color: $sage-green;         
 }
