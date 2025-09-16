@@ -64,9 +64,11 @@
 
 .matches-list {
   display: grid;
-  grid-template-columns: 1fr; /* mobile: 1 coluna */
-  gap: 1rem;
-  margin-top: .75rem;
+ grid-template-columns: repeat(2, minmax(340px, 1fr));
+  gap: 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 @media (min-width: 992px) {
@@ -83,8 +85,11 @@
   padding: 1.5rem; // aumentei um pouco
   margin-bottom: 1.5rem;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  background: rgba(131, 131, 131, 0.175); /* deixei mais escuro p/ contraste */
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(214, 214, 214, 0.1);
   min-height: 130px; // aumenta a altura base (30% maior que antes)
 
   .match-info {
@@ -111,4 +116,96 @@
     font-size: 0.9rem;
     font-weight: 500;
   }
+}
+
+.match-title .team-shield {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  padding: 2px;
+  object-fit: contain;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+}
+
+.match-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.match-title .vs {
+  margin: 0 0.5rem;
+  font-weight: bold;
+  color: #024d35; /* sua cor principal */
+}
+
+
+/* ===== MOBILE TWEAKS ===== */
+
+/* até iPhone 14 Pro Max (~430px) e similares */
+@media (max-width: 480px){
+  .match-title{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+
+    white-space: nowrap;     /* mantém em 1 linha */
+    overflow: visible;        /* evita estourar */
+    text-overflow: ellipsis; /* fallback de segurança */
+
+    font-size: clamp(0.78rem, 2.3vw, 0.95rem);
+    /* fonte se adapta: nunca menor que 12px, nunca maior que 14px */
+    font-weight: 600;
+    line-height: 1.2;
+
+    min-width: 0;  /* deixa encolher dentro do grid */
+  }
+
+  .match-title .team-shield{
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+  }
+
+  .match-title .vs{
+    margin: 0 2px;
+    font-weight: 700;
+  }
+
+ .match-card{
+    display: grid;                                 /* garante layout consistente */
+    grid-template-columns: minmax(0, 1fr) auto;    /* texto encolhe | botão fixo */
+    align-items: center;
+    column-gap: 10px;
+
+    padding: 10px 12px;
+    overflow: hidden;                               /* botão e sombra ficam dentro */
+    border-radius: 14px;                            /* reforça o raio no corte */
+    box-sizing: border-box;
+    padding-right: 14px;
+  }
+  
+
+  /* bloco de texto pode encolher sem empurrar o botão */
+  .match-info{ min-width: 0; }
+
+  /* botão alinhado à direita e sem “pular” */
+  .match-card .btn{
+    justify-self: end;
+    white-space: nowrap;
+    max-width: 100%;
+    transform: none;                                /* evita deslocamentos */
+    margin: 0;                                      /* sem margens negativas */
+    box-shadow: 0 4px 10px rgba(0,0,0,.12);         /* sombra contida */
+  }
+  .matches-list{
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 380px){
+  .match-card{
+    grid-template-columns: 1fr;   /* empilha o botão embaixo */
+    row-gap: 10px;
+  }
+  .match-card .btn{ justify-self: end; }
 }
