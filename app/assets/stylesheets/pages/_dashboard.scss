@@ -1,10 +1,23 @@
 .dashboard-bg {
-  padding: 16px;
+  background: image-url("campo.png") no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  padding: 12px;
+}
+
+.hero-img {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+
+  @media (max-width: 576px) {
+    height: 240px;
+  }
 }
 
 
 .card-user {
-    background-color: white;
+    background-color: #fff;
     border-radius: 12px 12px 0 0;
     padding: 24px;
 
@@ -17,63 +30,98 @@
 .next-matches {
   background-color: white;
   padding: 24px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-}
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 
-.user-body {
-  background-color: white;
-  padding: 32px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 12px 12px 0 0;
-  margin-top: -20px;
-  position: relative;
-  z-index: 2;
-
-
-}
-
-.user-confirmed-events {
-  background-color: lightgrey;
-  padding: 32px;
-  border-radius: 12px;
-  margin-top: -10px;
-  position: relative;
-  z-index: 2;
-
-  .events-container {
-    margin-top: 32px;
-    display: flex;
-    gap: 16px;
+  h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
   }
 
-  .event-card {
-  position: relative; // necessário para o stretched-link
-  background: #fff;
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  flex: 1 1;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-    cursor: pointer;
-  }
-
-  .card-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #212529; // texto mais forte
-  }
-
-  .card-text {
-    font-size: 14px;
-    color: #6c757d; // cinza Bootstrap
-    margin-bottom: 12px;
+  .match-details {
+    background-color: #ffffffec;
+    border-radius: 12px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
 }
 
+.events {
+  .card-body {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+  }
+
+  .card-events {
+    margin-top: 12px;
+
+    .card {
+      background-color: #ffffffec;
+      border-radius: 12px;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      }
+
+      .card-body {
+        padding: 1rem;
+
+        .fw-semibold {
+          font-size: 0.95rem;
+          color: #333;
+        }
+
+        small {
+          font-size: 0.8rem;
+        }
+
+        i {
+          color: #666;
+        }
+      }
+    }
+
+    .text-center {
+      min-width: 60px;
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      font-size: 0.9rem;
+
+      .fw-bold {
+        font-size: 1rem;
+        color: #111;
+      }
+
+      small {
+        color: #888;
+      }
+    }
+  }
+}
+
+.other-matches {
+  background-color: #fff !important;
+  padding: 24px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+
+  h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+  }
+
+  .match-details {
+    background-color: #ffffffec !important;
+    border-radius: 12px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
 }
