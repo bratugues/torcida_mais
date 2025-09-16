@@ -11,20 +11,21 @@
 
   <div class="row mt-3">
     <div class="col-12 col-lg-8">
-      <div class="main-info card-custom">
-        <%# icone calendario %>
+      <div class="card-custom">
         <h5 class="label-text">Date and Time:</h5>
-        <p class="main-text"><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y") %> - <%= @event.date.strftime("%H:%M") %></p>
-        <%# icone localizacao %>
-        <h5 class="label-text">Address:</h5>
+        <p class="main-text"><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%B %d, %Y") %></p>
+        <p class="main-text"><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M") %></p>
+      </div>
+
+      <div class="card-custom mt-3"> <h5 class="label-text">Address:</h5>
         <p class="main-text"><i class="fa-solid fa-location-dot"></i> <%= @event.address%></p>
         <h5 class="label-text">City:</h5>
         <p class="main-text"><i class="fa-solid fa-location-dot"></i> <%= @event.city%></p>
+      </div>
 
-        <%# icone de usuario %>
+      <div class="card-custom mt-3">
         <h5 class="label-text">Hosted by:</h5>
         <p class="main-text"><i class="fa-solid fa-user"></i> <%= @event.user.username %></p>
-        <%# icone camisa de time %>
         <h5 class="label-text">Match:</h5>
         <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.match.title%></p>
         <h5 class="label-text">Event team:</h5>
