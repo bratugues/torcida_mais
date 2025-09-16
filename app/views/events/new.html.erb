@@ -4,8 +4,19 @@
   <div class="text-fields">
     <%= simple_form_for @event do |f| %>
       <%= f.input :name, label: "Event name:", placeholder: "Type the event name..." %>
-      <%= f.association :match, label: "Match", :prompt => "Select the match..." %>
-      <%= f.association :club, required: true, :prompt => "Select the team..." %>
+      <%= f.association :match,
+          label: "Match",
+          collection: @matches_for_user,
+          value_method: :id,
+          label_method: ->(m) { "#{m.played_at.strftime('%d/%m')} — #{m.home_team.name} x #{m.away_team.name}" },
+          prompt: "Select the match...",
+          selected: (params.dig(:event, :match_id) || @suggested_match_id)
+      %>
+      <%= f.association :club,
+          label: "Team",
+          collection: @clubs_from_matches,
+          prompt: "Select the team..."
+      %>
       <%= f.input :city,
                   as: :select,
                   collection: User::Cities,
