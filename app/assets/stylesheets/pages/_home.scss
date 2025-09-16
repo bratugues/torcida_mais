@@ -171,3 +171,51 @@ html, body {
     display: block;
   }
 }
+
+.why-us-card-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.why-us{
+  min-height: 600px;
+  background-color: $verde-secundario;
+  padding: 5rem 0;
+}
+
+.why-us-card{
+  flex: 0 1 280px;
+  min-height: 320px;
+  border-radius: 16px;
+  background-color: $snow;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.icon-container{
+  background-color: $verde-secundario;
+  display: inline-block;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 30px;
+  color: $verde-principal;
+}
+
+@media (max-width: 768px) {
+  .why-us-card {
+    flex-basis: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-us-card {
+    flex-basis: 95%;
+  }
+}
