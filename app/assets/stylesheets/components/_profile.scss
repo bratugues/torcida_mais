@@ -45,14 +45,21 @@ $rose:     #FFFAFA;
 
 /* Botão principal preto */
 .btn-profile {
-  background: #000;
-  color: #fff;
+  background: $light-green;
+  color: $forest;
   border-radius: 12px;
   padding: 10px 14px;
   font-weight: 600;
   border: none;
   transition: filter .15s ease;
-  &:hover { filter: brightness(0.9); }
+  border: 2px solid $forest;
+  // &:hover { filter: brightness(0.9); }
+}
+
+.btn-profile:hover {
+  color: $light-green;
+  background-color: $forest;
+  transition: 1s ease;
 }
 
 /* Ajustes de espaçamento */

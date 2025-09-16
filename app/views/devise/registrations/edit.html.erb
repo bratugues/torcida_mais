@@ -3,7 +3,7 @@
 
 <%= simple_form_for(resource, as: resource_name,
       url: registration_path(resource_name),
-      html: { method: :put, multipart: true, class: "profile-card" }) do |f| %>
+      html: { method: :put, multipart: true, class: "profile-card mt-3" }) do |f| %>
 
   <%= f.error_notification %>
 
@@ -92,7 +92,7 @@
 <% end %>
 
 <!-- Danger zone -->
-<div class="mt-3 text-center">
+<div class="mt-3 mb-3 text-center">
   <%= button_to "Delete my account",
         destroy_user_registration_path,
         method: :delete,
