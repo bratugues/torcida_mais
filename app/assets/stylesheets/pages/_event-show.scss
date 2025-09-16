@@ -10,7 +10,7 @@
 
 .card-custom {
   background-color: #FFFFFF; // Um branco puro para os cards se destacarem do fundo
-  border: 1px solid #EAEAEA; // Uma borda muito sutil em vez de depender apenas da sombra
+  border: 1px solid #E0E0E0; // Uma borda muito sutil em vez de depender apenas da sombra
   border-radius: 12px;       // Nossos cantos modernos e suaves
   padding: 24px;             // Um bom respiro interno
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // A sombra suave para dar profundidade
@@ -39,6 +39,10 @@
 .main-text{
   color: $texto-principal;
   font-weight: 500;
+}
+
+.main-text i {
+  color: $verde-principal;
 }
 
 .label-text{
@@ -78,4 +82,27 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.event-title-card{
+  background-color: $snow;
+  border-radius: 8px;
+  border: 1px solid gray;
+  padding: 16px;
+}
+
+.action-card form {
+  display: flex;
+  justify-content: center;
+}
+
+.event-title,
+.main-text,
+.card-header-custom strong {
+  color: #333333;
+}
+
+.event-title-card p,
+.label-text {
+  color: #757575;
 }
