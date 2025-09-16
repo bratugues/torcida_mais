@@ -9,4 +9,8 @@ class Club < ApplicationRecord
   def shield_path
     "escudos/#{name.parameterize}.png"
   end
+
+  def banner_path
+    "event-bg/#{name.parameterize}-banner.png"
+  end
 end

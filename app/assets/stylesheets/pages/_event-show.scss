@@ -79,3 +79,15 @@
     transform: translateY(0);
   }
 }
+
+.event-title-card{
+  background-color: $snow;
+  border-radius: 8px;
+  border: 1px solid gray;
+  padding: 16px;
+}
+
+.action-card form {
+  display: flex;
+  justify-content: center;
+}

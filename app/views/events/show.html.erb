@@ -1,9 +1,16 @@
-<div class="container event-page mt-4">
+<div class="container event-page pt-3">
   <div class="row">
+    <div class="col-12">
+      <div class="event-title-card">
+        <h1 class="event-title"><%=@event.name%></h1>
+        <h5 >Description</h5>
+        <p><%= @event.description%></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
     <div class="col-12 col-lg-8">
-      <h1 class="event-title"><%=@event.name%></h1>
-      <h5 >Description</h5>
-      <p><%= @event.description%></p>
       <div class="main-info card-custom">
         <%# icone calendario %>
         <h5 class="label-text">Date and Time:</h5>
@@ -44,7 +51,9 @@
           <%= link_to "Edit event", edit_event_path, class: "btn btn-outline-warning"%>
         </div>
         <%end%>
-    </div>
+      </div>
+
+
 
     <div class="col-12 col-lg-4">
       <div class="sticky">
@@ -56,7 +65,7 @@
               <p>You're already in the event.</p>
             <% else %>
               <%= simple_form_for [@event, @attendance] do |f| %>
-                <%= f.submit "Confirm presence", class: "btn btn-custom-primary btn-primary" %>
+                <%= f.button :submit, "Confirm presence", class: "btn-custom-primary btn-primary" %>
               <% end %>
             <% end %>
           <% end %>
@@ -86,4 +95,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
