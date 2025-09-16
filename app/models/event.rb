@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :attendances, dependent: :destroy
 
-  validates :name, :address, :club, :description, :date, presence: true
+  validates :name, :address, :club, :description, :date, :place, presence: true
   validates :city, presence: true, inclusion: { in: User::Cities }
 
   def average_rating
