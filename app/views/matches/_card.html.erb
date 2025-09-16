@@ -1,0 +1,29 @@
+<% show_footer = local_assigns.fetch(:show_footer, false) %>
+<% dt = match.played_at %>
+
+<div class="card rounded-4 border shadow-sm">
+  <div class="card-body">
+    <div class="row align-items-center text-center g-2">
+      <div class="col-4">
+        <%= image_tag match.home_team.shield_path, class: "img-fluid mb-1", style: "height:40px;" %>
+        <div class="fw-bold text-truncate w-100" style="max-width: 10rem; margin: 0 auto;">
+          <%= match.home_team.name %>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <% if dt.present? %>
+          <div class="fw-semibold"><%= dt.strftime("%d/%m") %></div>
+          <small class="text-muted"><%= dt.strftime("%H:%M") %></small>
+        <% end %>
+      </div>
+
+      <div class="col-4">
+        <%= image_tag match.away_team.shield_path, class: "img-fluid mb-1", style: "height:40px;" %>
+        <div class="fw-bold text-truncate w-100" style="max-width: 10rem; margin: 0 auto;">
+          <%= match.away_team.name %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
