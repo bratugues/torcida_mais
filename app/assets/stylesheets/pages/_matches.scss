@@ -81,8 +81,8 @@
 .match-card {
   display: flex;
   justify-content: space-between;
-  align-items: center; // centraliza o botão verticalmente
-  padding: 1.5rem; // aumentei um pouco
+  align-items: center;
+  padding: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 10px;
   -webkit-backdrop-filter: blur(6px);
@@ -90,11 +90,11 @@
   background: rgba(131, 131, 131, 0.175); /* deixei mais escuro p/ contraste */
   border-radius: 14px;
   box-shadow: 0 2px 6px rgba(214, 214, 214, 0.1);
-  min-height: 130px; // aumenta a altura base (30% maior que antes)
+  min-height: 130px; 
 
   .match-info {
     display: flex;
-    flex-direction: column; // empilha título e data/hora
+    flex-direction: column;
     gap: 0.5rem;
   }
 
@@ -135,13 +135,10 @@
 .match-title .vs {
   margin: 0 0.5rem;
   font-weight: bold;
-  color: #024d35; /* sua cor principal */
+  color: #024d35;
 }
 
 
-/* ===== MOBILE TWEAKS ===== */
-
-/* até iPhone 14 Pro Max (~430px) e similares */
 @media (max-width: 480px){
   .match-title{
     display: flex;
@@ -173,30 +170,30 @@
   }
 
  .match-card{
-    display: grid;                                 /* garante layout consistente */
-    grid-template-columns: minmax(0, 1fr) auto;    /* texto encolhe | botão fixo */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     column-gap: 10px;
 
     padding: 10px 12px;
-    overflow: hidden;                               /* botão e sombra ficam dentro */
-    border-radius: 14px;                            /* reforça o raio no corte */
+    overflow: hidden;
+    border-radius: 14px;
     box-sizing: border-box;
     padding-right: 14px;
   }
-  
 
-  /* bloco de texto pode encolher sem empurrar o botão */
+
+
   .match-info{ min-width: 0; }
 
-  /* botão alinhado à direita e sem “pular” */
+
   .match-card .btn{
     justify-self: end;
     white-space: nowrap;
     max-width: 100%;
-    transform: none;                                /* evita deslocamentos */
-    margin: 0;                                      /* sem margens negativas */
-    box-shadow: 0 4px 10px rgba(0,0,0,.12);         /* sombra contida */
+    transform: none;
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,.12);
   }
   .matches-list{
     grid-template-columns: 1fr !important;
@@ -204,7 +201,7 @@
 }
 @media (max-width: 380px){
   .match-card{
-    grid-template-columns: 1fr;   /* empilha o botão embaixo */
+    grid-template-columns: 1fr;
     row-gap: 10px;
   }
   .match-card .btn{ justify-self: end; }
