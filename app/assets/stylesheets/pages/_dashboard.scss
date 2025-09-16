@@ -1,10 +1,12 @@
-.user-header {
-    margin-top: 24px;
-    padding: 48px 32px;
-    background-color: #DDEB9D;
+.dashboard-bg {
+  padding: 16px;
+}
+
+
+.card-user {
+    background-color: white;
     border-radius: 12px 12px 0 0;
-    position: relative;
-    z-index: 1;
+    padding: 24px;
 
     h1 {
       font-size: 32px;
@@ -12,8 +14,14 @@
     }
 }
 
+.next-matches {
+  background-color: white;
+  padding: 24px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
 .user-body {
-  background-color: rgba(250, 248, 248, 0.925);
+  background-color: white;
   padding: 32px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 12px 12px 0 0;
