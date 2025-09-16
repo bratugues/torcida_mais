@@ -181,7 +181,7 @@ html, body {
 
 .why-us{
   min-height: 600px;
-  background-color: $verde-secundario;
+  background-color: #F9F9F9;
   padding: 5rem 0;
 }
 
@@ -189,7 +189,7 @@ html, body {
   flex: 0 1 280px;
   min-height: 320px;
   border-radius: 16px;
-  background-color: $snow;
+  background-color: white;
   padding: 20px;
   display: flex;
   justify-content: flex-start;
@@ -200,7 +200,6 @@ html, body {
 
 .icon-container{
   background-color: $verde-secundario;
-  display: inline-block;
   border-radius: 50%;
   width: 65px;
   height: 65px;
@@ -217,5 +216,61 @@ html, body {
 @media (max-width: 480px) {
   .why-us-card {
     flex-basis: 95%;
+  }
+}
+
+.how-it-works{
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  padding: 80px;
+  gap: 2rem;
+}
+
+.how-it-works-card{
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.how-it-works-number{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $verde-principal;
+  color: $snow;
+  border-radius: 50%;
+  height: 65px;
+  width: 65px;
+  font-size: 25px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.how-it-works-content, .how-it-works-image{
+  flex: 1;
+}
+
+.how-it-works-cards-container{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.rounded-img {
+  border-radius: 8px;
+  height: 440px;
+}
+
+@media (max-width: 992px) {
+  .how-it-works {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+  .rounded-img{
+    height: 300px;
   }
 }
