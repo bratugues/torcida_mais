@@ -3,21 +3,22 @@
 <div class="container-new">
   <div class="text-fields">
     <%= simple_form_for @event do |f| %>
-      <%= f.input :name, label: "Event name:" %>
+      <%= f.input :name, label: "Event name:", placeholder: "Type the event name..." %>
       <%= f.association :match, label: "Match", :prompt => "Select the match..." %>
       <%= f.association :club, required: true, :prompt => "Select the team..." %>
       <%= f.input :city,
                   as: :select,
                   collection: User::Cities,
-                  label: "City:" %>
-      <%= f.input :address, label: "Address:" %>
+                  label: "City:", :prompt => "Select the city..." %>
+      <%= f.input :place, label: "Place:", placeholder: "Type bar or establishment name..." %>
+      <%= f.input :address, label: "Address:", placeholder: "Type the address of the bar or establishment..." %>
       <%= f.input :date, as: :string, label: "Date and Time:",  input_html: {
               data: { controller: "flatpickr" },
               placeholder: 'Select the date and time...'
             }%>
-      <%= f.input :capacity, label: "Capacity:"%>
-      <%= f.input :price, label: "Price:"%>
-      <%= f.input :description, label: "Description:"%>
+      <%= f.input :capacity, label: "Capacity:", placeholder: "If there is a max number of people, please type here..."%>
+      <%= f.input :price, label: "Price:", placeholder: "If there is an entry fee, please type here..."%>
+      <%= f.input :description, label: "Description:", placeholder: "Please describe the event here..."%>
       <%= f.submit "Create event", class: "btn-primary w-100"%>
     <% end %>
   </div>

@@ -1,7 +1,7 @@
 <div class="container py-4">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <h1 class="mb-0 main-blue-text">Events</h1>
+          <h1 class="mb-0 main-blue-text forest">Events</h1>
             <div class="d-flex align-items-center text-muted mt-1">
               <i class="fa-solid fa-location-dot me-2"></i>
               <span><%= current_user.location %></span>
@@ -32,7 +32,7 @@
             <div class="card-body">
               <div class="card-date d-flex justify-content-between">
                 <p class="pill"> Brasileirão </p>
-                <p><%=date%></p>
+                <p><i class="fa-regular fa-calendar forest"></i> <%=date%></p>
               </div>
               <div class="card-title">
               <p><%= image_tag event.match.home_team.shield_path, width: 40 %> x <%= image_tag event.match.away_team.shield_path, width:40%></p>
@@ -40,9 +40,9 @@
               </div>
               <p class="card-subtitle mb-2 text-body-secondary"><%=event.name.capitalize%></p>
               <div class="event-info my-3 text-start">
-                <h6 class="card-text"><strong><i class="fa-solid fa-location-dot"></i></i></strong> <%=event.address%>, <%=event.city%></h6>
-                <h6 class="card-text"><strong><i class="fa-regular fa-calendar"></i></strong> <%=date%></h6>
-                <h6 class="card-text"><strong><i class="fa-regular fa-clock"></i></strong> <%=time%></h6>
+                <h6 class="card-text"><strong><i class="fa-solid fa-location-dot forest"></i></i></strong> <%=event.place%> - <%=event.city%></h6>
+                <h6 class="card-text"><strong><i class="fa-regular fa-clock forest"></i></strong> <%=time%></h6>
+                <h6 class="card-text"><strong><i class="fa-regular fa-user forest"></i></strong> Hosted by: <%=event.user.username%></h6>
               </div>
               <%=link_to "See event", event_path(event), class:"card-link btn btn-primary mb-2"%>
               <% unless current_user.bar? %>

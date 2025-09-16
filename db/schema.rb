@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_15_193103) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_16_175047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_15_193103) do
     t.datetime "date"
     t.bigint "club_id", null: false
     t.string "city"
+    t.string "place"
     t.index ["club_id"], name: "index_events_on_club_id"
     t.index ["match_id"], name: "index_events_on_match_id"
     t.index ["user_id"], name: "index_events_on_user_id"
@@ -129,8 +130,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_15_193103) do
     t.string "name"
     t.string "username"
     t.string "location"
-    t.string "team"
     t.boolean "bar"
+    t.string "team"
     t.string "bar_name"
     t.string "bar_address"
     t.bigint "club_id", null: false
