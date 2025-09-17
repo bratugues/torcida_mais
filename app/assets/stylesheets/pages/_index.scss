@@ -28,7 +28,11 @@
   padding: 4px;
 }
 
-/* ===== Events Page (mesmo visual da Attendances) ===== */
+.event-info h6.card-text {
+  font-family: $body-font;
+  font-weight: 400;
+}
+
 .events-page {
   position: relative;
   min-height: 100vh;
@@ -53,11 +57,9 @@
   }
 }
 
-/* Glass card e tipografia iguais à Attendances */
+/* Glass card */
 .events-page .glass-card {
   background: rgba(255,255,255,0.16);
-  // border: 1px solid rgba(255,255,255,0.28);
-  // border-radius: 18px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 24px rgba(0,0,0,.22), inset 0 0 40px rgba(255,255,255,.05);
@@ -68,7 +70,7 @@
   padding: 1.25rem 1.5rem;
 
   .card-title {
-    h5 { /* título do jogo */
+    h5 {
       color: #fff;
       font-weight: 800;
       text-shadow: 0 1px 3px rgba(0,0,0,.5);
@@ -81,11 +83,11 @@
 
   .event-info strong { color: #eaeaea; }
 
-  /* opcional: deixar os ícones claros também */
+
   i { color: #eaeaea; }
 }
 
-/* responsivo básico */
+/* responsivo  */
 @media (max-width: 480px) {
   .events-page { padding: 1rem; }
   .events-page .event-card { padding: 1rem; }
