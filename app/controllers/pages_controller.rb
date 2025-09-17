@@ -22,7 +22,7 @@ class PagesController < ApplicationController
                           .where.not(away_team_id: my_club&.id)
                           .includes(:home_team, :away_team)
                           .order(:played_at)
-                          .limit(4)
+                          .limit(2)
 
     @attendances = current_user.attendances.includes(:event)
   end

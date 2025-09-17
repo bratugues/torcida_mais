@@ -1,15 +1,25 @@
 <div data-controller="calendar" class="matches-page">
 
   <div class="matches-header">
-    <div class="filters">
-      <label for="date-selector" class="filters__label"><i class="fa-solid fa-calendar forest"></i></label>
-      <input type="date"
-             data-controller="flatpickr"
-             placeholder="Select date"
-             id="date-selector"
-             class="date-input"
-             data-action="change->calendar#apply">
-    </div>
+    <%= form_with url: matches_path, method: :get, local: true, class: "filters d-inline-flex align-items-center gap-2" do %>
+    <label for="date-selector" class="filters__label mb-0">
+      <i class="fa-solid fa-calendar forest"></i>
+    </label>
+
+    <%= date_field_tag :date,
+                       params[:date],
+                       id: "date-selector",
+                       class: "date-input form-control",
+                       onchange: "this.form.submit()" %>
+
+      <% if params[:date].present? %>
+        <button type="button"
+                class="btn btn-sm btn-link p-0"
+                onclick="this.form.querySelector('#date-selector').value=''; this.form.submit();">
+          clear
+        </button>
+      <% end %>
+    <% end %>
 
     <%= link_to " Back ", dashboard_path, class: "btn btn-secondary" %>
   </div>
