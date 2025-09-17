@@ -130,3 +130,40 @@
     width: 100%;
   }
 }
+/* === Harmonizar My Events com Attendances === */
+.my-events-page {
+
+  &::before { background: rgba(0,0,0,.40); }
+}
+
+.my-events-page .glass-card {
+  /*  glass do attendances */
+  background: rgba(255,255,255,0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.22), inset 0 0 40px rgba(255,255,255,.05);
+  color: #f5f5f5; /* cor base do texto no card */
+}
+
+/* Tipografia igual ao attendances */
+.my-events-page .event-card {
+  color: #f5f5f5;
+
+  .event-title {
+    /* título equivalente a .card-title */
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+
+    .team-name { color: #fff; }
+    .vs       { color: #eaeaea; }
+  }
+
+  .event-meta {                        /* equivalente a .card-text */
+    color: #f1f1f1;
+  }
+
+  strong { color: #eaeaea; }
+}
+
+.my-events-page .btn.btn-secondary { margin-top: 1rem; }
