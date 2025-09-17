@@ -1,21 +1,25 @@
-<%= turbo_stream_from @event %>
-<div id="current-user" data-id="<%= current_user.id %>">
+<div class="chat-container">
 
-</div>
-<h1 class="mt-3 ms-3">Chat do Evento - <%= @event.name %></h1>
+  <%= turbo_stream_from @event %>
+  <div id="current-user" data-id="<%= current_user.id %>">
 
-<div class="container-chat">
-  <div id="messages" class="border border-dark p-3 my-3 bg-white">
-    <% @event.messages.each do |message| %>
-      <%= render "message", message: message %>
-    <% end %>
   </div>
+  <h1 class="mt-3 ms-3">Event's chat - <%= @event.name %></h1>
 
-  <div class="content">
-    <%= render "form", message: @message, event: @event %>
-  </div>
+  <div class="container-chat">
+    <div id="messages" class="border border-dark p-3 my-3 bg-white">
+      <% current_id = current_user&.id %>
+      <% @event.messages.each do |message| %>
+        <%= render "message", message: message, current_user_id: current_id %>
+      <% end %>
+    </div>
 
-  <div class="button-back">
-    <%= link_to "Back", event_path(@event), class: "btn btn-primary mt-3"%>
+    <div class="content">
+      <%= render "form", message: @message, event: @event %>
+    </div>
+
+    <div class="button-back">
+      <%= link_to "Back", event_path(@event), class: "btn btn-primary mt-3"%>
+    </div>
   </div>
 </div>
