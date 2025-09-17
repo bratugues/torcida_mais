@@ -1,42 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 offset-sm-3">
-      <div class="confirmed-events">
-        <h2>Your confirmed events</h2>
-         <div class="input-group">
-            <input type="search"
-                  class="form-control rounded-pill"
-                  placeholder="Search your events..."
-                  aria-label="Search">
-            <span class="input-group-text bg-transparent border-0 position-absolute end-0 me-3">
-              <i class="fa-solid fa-magnifying-glass text-muted"></i>
-            </span>
-          </div>
-          <% if @attendances.any? %>
-            <div class="events-container">
-              <% @attendances.each do |attendance| %>
-              <div class="event-card">
-                <p class="card-title"><%= attendance.event.name %></p>
-                <p class="card-text"><%= attendance.event.date&.strftime("%d/%m - %H:%M") %></p>
-                <p class="card-text"><%= attendance.event.address %></p>
+<div class="attendance-page">
+  <div class="attendance-header">
+    <h2 class="page-title">Your confirmed events</h2>
 
-                <div class="d-flex align-items-center justify-content-between">
-                  <span class="participants">
-                    <i class="fa-solid fa-users"></i>
-                    <%= pluralize(attendance.event.attendances.count, "attendee") %>
-                  </span>
-                  <%= link_to "See details", event_path(attendance.event), class:"card-link btn btn-secondary" %>
-                </div>
-              </div>
-              <% end %>
-            </div>
-          <% else %>
-            <p>You don’t have confirmed events yet.</p>
-          <% end %>
-         <div class="attendances-bottom">
-          <%= link_to "Back to home", dashboard_path, class: "btn btn-primary" %>
-        </div>
+    <div class="search-wrap">
+      <div class="input-group">
+        <input type="search"
+               class="form-control rounded-pill"
+               placeholder="Search your events..."
+               aria-label="Search">
+        <span class="input-group-text bg-transparent border-0 position-absolute end-0 me-3">
+          <i class="fa-solid fa-magnifying-glass text-muted"></i>
+        </span>
       </div>
     </div>
+  </div>
+
+  <% if @attendances.any? %>
+    <div class="events-container">
+      <% @attendances.each do |attendance| %>
+        <div class="event-card glass-card">
+          <p class="card-title"><%= attendance.event.name %></p>
+          <p class="card-text"><%= attendance.event.date&.strftime("%d/%m - %H:%M") %></p>
+          <p class="card-text"><%= attendance.event.address %></p>
+
+          <div class="event-footer">
+            <span class="participants">
+              <i class="fa-solid fa-users"></i>
+              <%= pluralize(attendance.event.attendances.count, "attendee") %>
+            </span>
+            <%= link_to "See details", event_path(attendance.event), class: "btn btn-secondary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="no-events">You don’t have confirmed events yet.</p>
+  <% end %>
+
+  <div class="attendances-bottom">
+    <%= link_to "Back to home", dashboard_path, class: "btn btn-primary" %>
   </div>
 </div>

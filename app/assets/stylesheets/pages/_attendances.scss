@@ -1,39 +1,145 @@
-.confirmed-events {
-  margin-top: 32px;
-  padding: 32px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+/* ===== Attendance (fundo full + cards glass) ===== */
+.attendance-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem 1rem;
+  /* fundo: use o PNG em app/assets/images/fut_my.png */
+  background: image-url("fut_my.png") center/cover no-repeat;
+  z-index: 0;
+
+  /* overlay para melhorar contraste */
+  &::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.40);
+    z-index: -1;
+  }
+
+  /* remove “faixa” de container do Bootstrap nesta página */
+  &.container, &.container-fluid {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* header */
+.attendance-header {
+  max-width: 900px;
+  margin: 0 auto 1.5rem auto;
+  text-align: center;
+
+  .page-title {
+    color: #fff;
+    font-weight: 800;
+    font-size: 2rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,.4);
+    margin-bottom: 1rem;
+  }
+
+  .search-wrap {
+    max-width: 520px;
+    margin: 0 auto;
+  }
 
   .input-group {
-    margin-top: 48px;
+    position: relative;
+    .form-control {
+      padding-right: 42px; /* espaço para o ícone */
+      box-shadow: 0 6px 14px rgba(0,0,0,.2);
+    }
+    .input-group-text {
+      pointer-events: none;
+    }
+  }
+}
+
+/* lista de cards */
+.events-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* card com glass (coerente com as outras páginas) */
+.glass-card {
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.22), inset 0 0 40px rgba(255,255,255,.05);
+  color: #f5f5f5;
+}
+
+.event-card {
+  padding: 1.25rem 1.5rem;
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: .35rem;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
   }
 
+  .card-text {
+    margin-bottom: .25rem;
+    color: #f1f1f1;
+  }
 
-  .events-container {
-    margin-top: 32px;
+  .event-footer {
+    margin-top: .8rem;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    .participants {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #eaeaea;
+      font-weight: 600;
+    }
+
+    /* botão reaproveita o btn-secondary global */
+    .btn.btn-secondary { margin: 0; }
+  }
+}
+
+.no-events {
+  max-width: 900px;
+  margin: 1rem auto 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.attendances-bottom {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+/* responsivo */
+@media (max-width: 480px) {
+  .attendance-page { padding: 1rem; }
+
+  .events-container { gap: 14px; }
+
+  .event-card { padding: 1rem; }
+
+  .event-footer {
     flex-direction: column;
-    gap: 16px;
-  }
+    align-items: stretch;
 
-  .event-card {
-    background: white;
-    border-radius: 8px;
-    padding: 12px 16px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-
-    .card-title {
-      font-size: 20px;
-      font-weight: bold;
+    .btn.btn-secondary {
+      width: 100%;
+      text-align: center;
     }
-
-    .card-text {
-      font-size: 16px;
-    }
-  }
-
-  .attendances-bottom {
-    padding: 48px 0 48px 0;
   }
 }
