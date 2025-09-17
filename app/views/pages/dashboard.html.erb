@@ -7,23 +7,30 @@
 
           <div class="card-user">
             <h1 class="fw-bold mb-1">Hello, <%= current_user.name %></h1>
+
             <div class="text-muted d-flex align-items-center">
               <i class="fa-solid fa-location-dot me-2"></i>
               <span><%= current_user.location %></span>
             </div>
+
+            <p class="mt-2 mb-0 small">
+              <%= link_to "Edit location", edit_user_registration_path, class: "link-secondary" %>
+            </p>
           </div>
-          <%= image_tag(
-            current_user&.club&.hero_path || "torcidas/torcida_default.png",
-            class: "hero-img",
-            alt: (current_user&.club&.name || "Torcida")
-          ) %>
+
+
+              <%= image_tag(
+                current_user&.club&.hero_path || "torcidas/torcida_default.png",
+                class: "hero-img",
+                alt: (current_user&.club&.name || "Torcida")
+              ) %>
           </div>
       </div>
 
       <div class="col-12 col-lg-4">
         <div class="next-matches shadow-sm rounded-4 mb-4">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="card-matches">
+            <div class="d-flex align-items-center gap-2 mb-3">
               <h3 class="mb-0">Upcoming matches: <%= current_user.club.name %></h3>
               <i class="fa-regular fa-futbol"></i>
             </div>
@@ -34,7 +41,6 @@
                   <%= render partial: "matches/card", locals: { match: match, show_footer: false } %>
                 <% end %>
               </div>
-              <!-- /.vstack -->
             <% else %>
               <p class="text-muted">No upcoming matches for your team.</p>
             <% end %>
@@ -47,7 +53,7 @@
 
         <div class="events">
           <div class="card-body">
-            <h3 class="mb-0">Confirmed events</h3>
+            <h3 class="mb-0">Your confirmed events</h3>
               <div class="card-events">
                 <% if @attendances.any? %>
                   <div class="row g-4">
@@ -65,7 +71,7 @@
                               <div>
                                 <p class="fw-semibold mb-1"><%= attendance.event.name %></p>
                                 <small class="text-muted d-block">
-                                  <i class="fa-regular fa-map me-1"></i><%= attendance.event.address %>
+                                  <i class="fa-regular fa-map me-1"></i><%= attendance.event.place %>
                                 </small>
                                 <small class="text-muted">
                                   <i class="fa-solid fa-users me-1"></i>
@@ -90,7 +96,7 @@
       <div class="col-12 col-lg-4">
         <div class="card shadow-sm border-0 rounded-4 mb-4">
           <div class="other-matches">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2 mb-3">
                 <h3 class="mb-0">Other matches</h3>
                 <i class="fa-regular fa-futbol"></i>
               </div>

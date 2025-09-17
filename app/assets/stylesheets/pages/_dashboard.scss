@@ -2,7 +2,15 @@
   background: image-url("campo.png") no-repeat center center;
   background-size: cover;
   width: 100%;
+  height: 100%;
   padding: 12px;
+}
+
+.dashboard-bg .card {
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  transition: transform .2s ease;
 }
 
 .hero-img {
@@ -73,8 +81,9 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       }
 
-      .card-body {
+      .card-matches {
         padding: 1rem;
+        background-color: #fffffff1;
 
         .fw-semibold {
           font-size: 0.95rem;
