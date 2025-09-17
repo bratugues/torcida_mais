@@ -1,57 +1,119 @@
-.btn-custom-primary{
+/* =====================
+   BUTTONS
+===================== */
+.btn-custom-primary {
   background-color: $verde-principal;
 }
 
-.btn-custom-secondary{
-  border-color: $verde-principal;
+.btn-custom-secondary {
+  border: 1px solid $verde-principal;
   color: $verde-principal;
   border-radius: 16px;
 }
 
+/* =====================
+   CARDS
+===================== */
 .card-custom {
-  background-color: #FFFFFF; // Um branco puro para os cards se destacarem do fundo
-  border: 1px solid #E0E0E0; // Uma borda muito sutil em vez de depender apenas da sombra
-  border-radius: 12px;       // Nossos cantos modernos e suaves
-  padding: 24px;             // Um bom respiro interno
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // A sombra suave para dar profundidade
-  margin-bottom: 24px;       // Espaçamento entre os cards
+  background: rgba(255, 255, 255, 0.75);   // fundo translúcido
+  border: 1px solid #E0E0E0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   animation: fadeInUp 0.5s ease-out forwards;
+  position: relative;
+  z-index: 1;
+  color: #333;
 }
-.main-info{
+
+.review-card,
+.main-info {
+  border: 1px solid grey;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.main-info {
   background-color: $verde-secundario;
-  border: 1px solid grey;
+}
+
+/* =====================
+   EVENT SHOW PAGE
+===================== */
+.event-show-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background-color: #ACA59C;               // fundo sólido
+
+  /* títulos */
+  h1, h2, h3, h4, h5, h6 {
+    color: #000;
+    text-shadow: none;
+  }
+
+  .label-text {
+    font-weight: 700;
+    color: #000;
+  }
+
+  .main-text {
+    font-family: $body-font;
+    color: #111;
+    font-weight: 500;
+
+    i {
+      color: $verde-principal;             // ícones em verde
+      margin-right: 6px;
+    }
+  }
+}
+
+/* remover laterais do bootstrap */
+.event-show-page.container,
+.event-show-page.container-fluid {
+  max-width: 100% !important;
+  padding-left: 5 !important;
+  padding-right: 5 !important;
+}
+
+/* =====================
+   TITLE CARD
+===================== */
+.event-show-page .event-title-card {
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 12px;
-  padding: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  h1.event-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #000;
+    text-shadow: none;
+  }
+
+  h5 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  p {
+    font-family: $body-font;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #222;
+  }
 }
 
-.review-card{
-  border: 1px solid grey;
-  border-radius: 12px;
-  padding: 12px;
-}
 
-.event-title{
-  font-size: 2.5rem; // Exemplo: 40px
-  font-weight: 600; // SemiBold
-  margin-bottom: 16px;
-}
-
-.main-text{
-  color: $texto-principal;
-  font-weight: 500;
-}
-
-.main-text i {
-  color: $verde-principal;
-}
-
-.label-text{
-  font-size: 0.875rem;
-  color: $texto-secundario;
-  margin-bottom: 4px;
-}
-
-.sticky{
+.sticky {
   position: sticky;
   top: 24px;
 }
@@ -64,8 +126,8 @@
   gap: 8px;
 }
 
-.participant-item{
-  background-color: $verde-secundario;
+.participant-item {
+  background-color: $sage-green;
   padding: 6px 12px;
   border-radius: 16px;
   font-size: 0.875rem;
@@ -82,27 +144,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.event-title-card{
-  background-color: $snow;
-  border-radius: 8px;
-  border: 1px solid gray;
-  padding: 16px;
-}
-
-.action-card form {
-  display: flex;
-  justify-content: center;
-}
-
-.event-title,
-.main-text,
-.card-header-custom strong {
-  color: #333333;
-}
-
-.event-title-card p,
-.label-text {
-  color: #757575;
 }
