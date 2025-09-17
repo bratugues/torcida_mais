@@ -93,6 +93,9 @@
             </ul>
           <%end%>
         </div>
+        <div class="card-custom map d-flex justify-content-center align-items-center">
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['API_KEY']%>&q=<%=URI.encode_www_form_component(@event.address)%>" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </div>
   </div>
