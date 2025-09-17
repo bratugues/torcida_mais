@@ -22,3 +22,46 @@
   background-color: rgba(77, 74, 75, 0.1);
   color: #a00;
 }
+
+.nav-item:hover {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.nav-link:hover {
+  color: $forest;
+}
+
+#photo:hover {
+  border: none;
+  background-color: $forest;
+}
+
+.dropdown-toggle.snow[aria-expanded=true] {
+  color: $forest;
+  background-color: white;
+}
+
+.dropdown-toggle.snow {
+  border-radius: 10px;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  border: 2px solid $forest;
+  background-color: white;
+}
+
+.dropdown-divider {
+  border: 1px solid $forest;
+}
+
+.nav-link.dropdown-item {
+  background-color: white;
+  color: $forest;
+}
+
+.nav-link.dropdown-item:hover {
+  transition: 0.4s ease;
+  font-weight: bolder;
+}
