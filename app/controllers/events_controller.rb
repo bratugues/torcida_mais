@@ -10,7 +10,7 @@ class EventsController < ApplicationController
         events.name ILIKE :query OR
         events.address ILIKE :query OR
         events.city ILIKE :query OR
-        matches.title ILIKE :query
+        matches.title ILIKE :query OR
       SQL
       @events = @events.joins(:match).where(sql_subquery, query: "%#{params[:query]}%")
     end
