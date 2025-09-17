@@ -48,7 +48,7 @@
       <%end%>
       <%if @event.user == current_user%>
         <div class="edit-delete card-custom text-center">
-          <%= link_to "Delete event", event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+          <%= link_to "Delete event", event_path(@event), data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" }, class: "btn btn-outline-danger" %>
           <%= link_to "Edit event", edit_event_path, class: "btn btn-outline-warning"%>
         </div>
         <%end%>
