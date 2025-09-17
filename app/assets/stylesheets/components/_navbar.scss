@@ -45,3 +45,23 @@
 .dropdown-toggle.snow {
   border-radius: 10px;
 }
+
+.dropdown-menu {
+  border-radius: 10px;
+  border: 2px solid $forest;
+  background-color: white;
+}
+
+.dropdown-divider {
+  border: 1px solid $forest;
+}
+
+.nav-link.dropdown-item {
+  background-color: white;
+  color: $forest;
+}
+
+.nav-link.dropdown-item:hover {
+  transition: 0.4s ease;
+  font-weight: bolder;
+}
