@@ -6,6 +6,7 @@
       <%= f.input :name, label: "Event name:" %>
       <%= f.association :match, label: "Select the match..." %>
       <%= f.association :club, label: "Select the team..."%>
+      <%= f.input :place, label: "Place:"%>
       <%= f.input :city,
                       as: :select,
                       collection: User::Cities,

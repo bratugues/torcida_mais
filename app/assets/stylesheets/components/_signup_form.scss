@@ -18,3 +18,20 @@
     }
 
 }
+.links{
+  text-decoration: none;
+  color: $forest;
+  &:hover{
+    text-decoration: underline;
+    color: #5c9f82;
+  }
+}
+
+.btn-signup{
+  background-color: white;
+  color: $forest;
+  border: 2px solid $forest;
+  &:hover{
+    border: 2px solid $forest;
+  }
+}

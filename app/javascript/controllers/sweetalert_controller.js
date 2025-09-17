@@ -1,0 +1,26 @@
+import { Controller } from "@hotwired/stimulus"
+import Swal from "sweetalert2"
+
+// Connects to data-controller="sweetalert"
+export default class extends Controller {
+  connect() {
+  }
+
+  alert(event){
+  if (!event.isTrusted) return
+  event.preventDefault()
+  Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#386150",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.element.click()
+    }
+  });
+    }
+}

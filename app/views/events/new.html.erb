@@ -1,36 +1,51 @@
-<h1 class="h1-new">Create Event</h1>
+<div class="events-new-page">
+  <h1 class="page-title">Create Event</h1>
 
-<div class="container-new">
-  <div class="text-fields">
-    <%= simple_form_for @event do |f| %>
-      <%= f.input :name, label: "Event name:", placeholder: "Type the event name..." %>
-      <%= f.association :match,
-          label: "Match",
-          collection: @matches_for_user,
-          value_method: :id,
-          label_method: ->(m) { "#{m.played_at.strftime('%d/%m')} — #{m.home_team.name} x #{m.away_team.name}" },
-          prompt: "Select the match...",
-          selected: (params.dig(:event, :match_id) || @suggested_match_id)
-      %>
-      <%= f.association :club,
-          label: "Team",
-          collection: @clubs_from_matches,
-          prompt: "Select the team..."
-      %>
-      <%= f.input :city,
-                  as: :select,
-                  collection: User::Cities,
-                  label: "City:", :prompt => "Select the city..." %>
-      <%= f.input :place, label: "Place:", placeholder: "Type bar or establishment name..." %>
-      <%= f.input :address, label: "Address:", placeholder: "Type the address of the bar or establishment..." %>
-      <%= f.input :date, as: :string, label: "Date and Time:",  input_html: {
-              data: { controller: "flatpickr" },
-              placeholder: 'Select the date and time...'
-            }%>
-      <%= f.input :capacity, label: "Capacity:", placeholder: "If there is a max number of people, please type here..."%>
-      <%= f.input :price, label: "Price:", placeholder: "If there is an entry fee, please type here..."%>
-      <%= f.input :description, label: "Description:", placeholder: "Please describe the event here..."%>
-      <%= f.submit "Create event", class: "btn-primary w-100"%>
-    <% end %>
+  <div class="container-new">
+    <div class="glass-card form-card">
+      <div class="text-fields">
+        <%= simple_form_for @event do |f| %>
+          <%= f.input :name, label: "Event name:", placeholder: "Type the event name..." %>
+
+          <%= f.association :match,
+              label: "Match",
+              collection: @matches_for_user,
+              value_method: :id,
+              label_method: ->(m) { "#{m.played_at.strftime('%d/%m')} — #{m.home_team.name} x #{m.away_team.name}" },
+              prompt: "Select the match...",
+              selected: (params.dig(:event, :match_id) || @suggested_match_id) %>
+
+          <%= f.association :club,
+              label: "Team",
+              collection: @clubs_from_matches,
+              prompt: "Select the team..." %>
+
+          <%= f.input :city,
+              as: :select,
+              collection: User::Cities,
+              label: "City:",
+              prompt: "Select the city..." %>
+
+          <%= f.input :place, label: "Place:", placeholder: "Type bar or establishment name..." %>
+          <%= f.input :address, label: "Address:", placeholder: "Type the address of the bar or establishment..." %>
+
+          <%= f.input :date, as: :string, label: "Date and Time:",
+                input_html: { data: { controller: "flatpickr" }, placeholder: "Select the date and time..." } %>
+
+          <div class="row gx-3">
+            <div class="col-md-6">
+              <%= f.input :capacity, label: "Capacity:", placeholder: "Max people..." %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :price, label: "Price:", placeholder: "Entry fee..." %>
+            </div>
+          </div>
+
+          <%= f.input :description, label: "Description:", placeholder: "Please describe the event here..." %>
+
+          <%= f.submit "Create event", class: "btn btn-primary w-100 mt-2" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
