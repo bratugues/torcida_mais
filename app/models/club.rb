@@ -6,6 +6,10 @@ class Club < ApplicationRecord
 
   validates :name, presence: true
 
+  def hero_path
+    "torcidas/torcida_#{name.to_s.parameterize}.png"
+  end
+
   def shield_path
     "escudos/#{name.parameterize}.png"
   end

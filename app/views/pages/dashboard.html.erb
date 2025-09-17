@@ -12,8 +12,11 @@
               <span><%= current_user.location %></span>
             </div>
           </div>
-          <%= image_tag "torcidas/torcida_botafogo.png",
-                        class: "hero-img" %>
+          <%= image_tag(
+            current_user&.club&.hero_path || "torcidas/torcida_default.png",
+            class: "hero-img",
+            alt: (current_user&.club&.name || "Torcida")
+          ) %>
           </div>
       </div>
 
