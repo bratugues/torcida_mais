@@ -33,7 +33,7 @@
       </div>
 
       <%event_end_time = @event.date + 3.hours%>
-      <%if Time.current > event_end_time && @user_has_attended%>
+      <%if Time.current > event_end_time && @user_in_event%>
         <div class="review-card card-custom mt-3">
           <%# deixe seu comentario %>
           <h3>Review this event:</h3>
@@ -64,7 +64,7 @@
           <% unless current_user.bar? %>
             <%if @user_in_event%>
               <p>You're already in the event.</p>
-            <% else %>
+            <% elsif Time.now < @event.date %>
               <%= simple_form_for [@event, @attendance] do |f| %>
                 <%= f.button :submit, "Confirm presence", class: "btn-custom-primary btn-primary" %>
               <% end %>
