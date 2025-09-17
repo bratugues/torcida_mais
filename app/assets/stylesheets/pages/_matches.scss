@@ -40,7 +40,12 @@
   }
 }
 
-.matches-header {
+.matches-header,
+.matches-list {
+  max-width: 1100px;     /* ajuste se quiser mais/menos largo */
+  margin: 0 auto;
+  padding: 0 16px;       /* mesmo “respiro” dos cards */
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,6 +67,13 @@
   }
 }
 
+.matches-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
 
 .matches-list {
   display: grid;
@@ -147,16 +159,16 @@
     justify-content: flex-start;
     gap: 6px;
 
-    white-space: nowrap;     /* mantém em 1 linha */
-    overflow: visible;        /* evita estourar */
+    white-space: nowrap;
+    overflow: visible;
     text-overflow: ellipsis; /* fallback de segurança */
 
     font-size: clamp(0.78rem, 2.3vw, 0.95rem);
-    /* fonte se adapta: nunca menor que 12px, nunca maior que 14px */
+
     font-weight: 600;
     line-height: 1.2;
 
-    min-width: 0;  /* deixa encolher dentro do grid */
+    min-width: 0;
   }
 
   .match-title .team-shield{
