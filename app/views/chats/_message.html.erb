@@ -1,12 +1,10 @@
-<div data-controller="chat" data-chat-message-user-id-value="<%= message.user.id %>">
-  <div data-chat-target="outer">
-    <div data-chat-target="inner">
-      <p>
-        <%= message.content %>
-      </p>
-      <p id="username-message">
-        <%= message.user.name %>
-      </p>
-    </div>
+<% uid = local_assigns[:current_user_id] %>
+<% is_sent = uid.present? && message.user_id == uid %>
+
+<div class="message-wrapper <%= is_sent ? "sent" : "received" %>">
+  <div class="message-bubble">
+    <div class="username"><%= message.user.username %></div>
+    <div class="message-content"><%= message.content %></div>
+    <div class="timestamp"><%= message.created_at.strftime("%d %b - %H:%M") %></div>
   </div>
 </div>
