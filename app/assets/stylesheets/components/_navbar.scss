@@ -65,3 +65,19 @@
   transition: 0.4s ease;
   font-weight: bolder;
 }
+
+.dropdown-item {
+  color: $forest;
+}
+
+.dropdown-item:hover {
+  transition: 0.4s ease;
+  font-weight: bolder;
+  color: $forest;
+  background-color: white;
+}
+
+.dropdown-item.logout-strong:hover {
+  background-color: white;
+  font-weight: bolder;
+}
