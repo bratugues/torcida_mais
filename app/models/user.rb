@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   belongs_to :club
-  has_many :attendances
+  has_many :attendances, dependent: :destroy;
   has_many :reviews, dependent: :destroy
-  has_many :messages
-  has_many :events
+  has_many :messages, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_one_attached :photo
   validates :location, presence: true
   validates :bar_name, :bar_address, presence: true, if: :bar?
