@@ -23,4 +23,8 @@
 @import "layout/layout";
 @import "pages/chat";
 @import "pages/events";
+
+body {
+  background-color: #93c259;
+}
 @import "pages/edit";
