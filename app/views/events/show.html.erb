@@ -1,40 +1,85 @@
 <div class="container event-show-page pt-3">
   <div class="row">
-    <div class="col-12">
-      <div class="event-title-card">
-        <h1 class="event-title"><%=@event.name%></h1>
-        <h5 >Description</h5>
-        <p><%= @event.description%></p>
+    <%=link_to events_path, class: "link" do %>
+      <i class="fa-solid fa-backward"></i> Back
+    <%end%>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="event-title-card h-100">
+        <div class="elements d-flex flex-column gap-2">
+          <div class="d-flex justify-content-between">
+          <h1 class="event-title"><%=@event.name%></h1>
+          <%if @event.user == current_user%>
+          <div class="edit-delete text-center">
+          <%= link_to edit_event_path, class: "text-warning" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <%end%>
+          <%= link_to event_path(@event), data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" }, class: "text-danger" do %>
+            <i class="fa-solid fa-trash"></i>
+          <%end%>
+        </div>
+      <%end%>
+          </div>
+          <div class="d-flex gap-2 mb-4">
+            <%= image_tag @event.club.shield_path, width: 44 %>
+            <div>
+              <p>Hosted by:</p>
+              <p class="main-text"><%= @event.user.username %></p>
+            </div>
+          </div>
+          <p><%= @event.description%></p>
+          <% unless current_user.bar? %>
+              <%if @user_in_event%>
+                <%= simple_form_for [@event, @attendance] do |f| %>
+                  <%= f.button :submit, "You're already in the event.", class: "btn-custom-primary btn-primary w-100 mt-3 disabled no" %>
+                <% end %>
+              <% elsif Time.now < @event.date %>
+                <%= simple_form_for [@event, @attendance] do |f| %>
+                  <%= f.button :submit, "Confirm presence", class: "btn-custom-primary btn-primary w-100 mt-3" %>
+                <% end %>
+              <% end %>
+            <% end %>
+        </div>
+        <div class="row">
+          <div class="participants-card">
+            <div class="d-flex justify-content-between">
+              <h4>Going (<%=@attendances.count%>)</h4>
+              <%= link_to event_chats_path(@event), class: "btn btn-custom-secondary" do %>
+                <i class="fa-solid fa-comments"></i> Chat
+              <%end%>
+            </div>
+            <%if @attendances.count == 0%>
+                <%# no users confirmed %>
+                <p>Nobody confirmed yet. Be the first one to confirm! </p>
+            <%else%>
+                <%# all confirmed users %>
+                <ul class="participants-list mt-2">
+                  <%@attendances.each do |attendance|%>
+                    <li class="participant-item"><%=attendance.user.name%></li>
+                  <%end%>
+                </ul>
+            <%end%>
+          </div>
+        </div>
+        </div>
       </div>
+
+    <div class="col-12 col-md-4">
+      <div class="map d-flex flex-column text-center h-100">
+      <div class="elements card-custom d-flex flex-column align-items-center rounded-bottom mb-0 pb-0">
+            <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.match.title%></p>
+            <p class="main-text"><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%B %d, %Y") %> - <%= @event.date.strftime("%H:%M") %></p>
+            <p class="main-text"><i class="fa-solid fa-location-dot"></i> <%= @event.address%>, <%= @event.city%></p>
+          </div>
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['API_KEY']%>&q=<%=URI.encode_www_form_component(@event.address)%>" style="border:0; min-height: 29rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="flex-grow-1 w-100"></iframe>
+        </div>
     </div>
   </div>
 
-  <div class="row mt-3">
-    <div class="col-12 col-lg-8">
-      <div class="card-custom">
-        <h5 class="label-text">Date and Time:</h5>
-        <p class="main-text"><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%B %d, %Y") %></p>
-        <p class="main-text"><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M") %></p>
-      </div>
-
-      <div class="card-custom mt-3"> <h5 class="label-text">Address:</h5>
-        <p class="main-text"><i class="fa-solid fa-location-dot"></i> <%= @event.address%></p>
-        <h5 class="label-text">City:</h5>
-        <p class="main-text"><i class="fa-solid fa-location-dot"></i> <%= @event.city%></p>
-      </div>
-
-      <div class="card-custom mt-3">
-        <h5 class="label-text">Hosted by:</h5>
-        <p class="main-text"><i class="fa-solid fa-user"></i> <%= @event.user.username %></p>
-        <h5 class="label-text">Match:</h5>
-        <p class="main-text"><i class="fa-regular fa-futbol"></i> <%= @event.match.title%></p>
-        <h5 class="label-text">Event team:</h5>
-        <p class="main-text"><%= image_tag @event.club.shield_path, width: 30 %> <%= @event.club.name%></p>
-      </div>
-
-      <%event_end_time = @event.date + 3.hours%>
+  <%event_end_time = @event.date + 3.hours%>
       <%if Time.current > event_end_time && @user_in_event%>
-        <div class="review-card card-custom mt-3">
+        <div class="review-card card-custom mt-3 ms-5 me-5">
           <%# deixe seu comentario %>
           <h3>Review this event:</h3>
           <%= simple_form_for [@event, @review] do |f| %>
@@ -46,58 +91,7 @@
           <%# lista de comentarios existentes %>
         </div>
       <%end%>
-      <%if @event.user == current_user%>
-        <div class="edit-delete card-custom text-center">
-          <%= link_to "Delete event", event_path(@event), data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" }, class: "btn btn-outline-danger" %>
-          <%= link_to "Edit event", edit_event_path, class: "btn btn-outline-warning"%>
-        </div>
-        <%end%>
-      </div>
-
-
-
-    <div class="col-12 col-lg-4">
-      <div class="sticky">
-        <div class="action-card card-custom text-center">
-          <%# card position sticky %>
-          <%# botao de confirmar presenca %>
-          <% unless current_user.bar? %>
-            <%if @user_in_event%>
-              <p>You're already in the event.</p>
-            <% elsif Time.now < @event.date %>
-              <%= simple_form_for [@event, @attendance] do |f| %>
-                <%= f.button :submit, "Confirm presence", class: "btn-custom-primary btn-primary" %>
-              <% end %>
-            <% end %>
-          <% end %>
-          <%# botoes secundarios chat e voltar %>
-          <div class="buttons mt-3 text-center">
-            <%= link_to "Back", events_path, class: "btn btn-custom-secondary"%>
-            <%= link_to "Chat", event_chats_path(@event), class: "btn btn-custom-secondary"%>
-          </div>
-        </div>
-
-        <%if @attendances.count == 0%>
-          <div class="participants-card card-custom">
-            <%# no users confirmed %>
-            <p>Nobody confirmed yet. Be the first one to confirm! </p>
-          </div>
-        <%else%>
-          <div class="participants-card card-custom">
-            <%# all confirmed users %>
-            <h5>Going (<%=@attendances.count%>)</h5>
-            <ul class="participants-list">
-              <%@attendances.each do |attendance|%>
-                <li class="participant-item"><%=attendance.user.name%></li>
-              <%end%>
-            </ul>
-          <%end%>
-        </div>
-        <div class="card-custom map d-flex justify-content-center align-items-center">
-          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['API_KEY']%>&q=<%=URI.encode_www_form_component(@event.address)%>" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
+
+  
 </div>
