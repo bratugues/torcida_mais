@@ -28,12 +28,11 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @attendance = current_user.attendances.find_by(event: @event) || Attendance.new
+    @user_in_event = @attendance.persisted?
     @match_event = Event.includes(:club, :match)
-    @attendance = Attendance.new
     @attendances = @event.attendances
     @review = Review.new
     @message = Message.new
-    @user_in_event = @attendance.persisted?
     @user_has_attended = current_user.attendances.exists?
   end
 
