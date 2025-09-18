@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <%= link_to "See events", events_path(q: match.title, on: date_for_js),
+    <%= link_to "See events", events_path(match_id: match.id),
                 class: "btn btn-secondary" %>
   </div>
     <% end %>
