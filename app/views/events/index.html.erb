@@ -1,6 +1,7 @@
 <div class="events-page">
-
   <div class="container py-4">
+
+    <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <div>
         <h1 class="mb-0 page-title">Events</h1>
@@ -10,24 +11,30 @@
         </div>
       </div>
 
-      <%= link_to "Create new event", new_event_path, class: "btn btn-secondary" %>
+      <!--  only desktop -->
+      <%= link_to "Create new event",
+                  new_event_path,
+                  class: "btn btn-secondary events-create-btn d-none d-md-inline-block" %>
     </div>
 
-    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query, params[:query],
-            class: "form-control me-3 rounded-4",
-            placeholder: "Type a keyword" %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-    <% end %>
 
-    <div class="row mt-4">
+    <div class="events-search">
+      <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query, params[:query],
+              class: "form-control me-3 rounded-4",
+              placeholder: "Type a keyword" %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+    <!-- cards -->
+    <div class="events-list row mt-4">
       <% @events.each do |event| %>
         <% my_event_datetime = event.date %>
         <% date = my_event_datetime.strftime("%d/%m/%Y") %>
         <% time = my_event_datetime.strftime("%H:%M") %>
 
         <div class="col-12 col-lg-4 mb-3 d-flex">
-          <!-- troquei .card por .glass-card .event-card para herdar o estilo -->
           <div class="glass-card event-card w-100 text-center">
             <div class="card-body">
               <div class="card-date d-flex justify-content-between">
@@ -63,16 +70,16 @@
 
               <%= link_to "See event", event_path(event), class: "card-link btn btn-primary mb-2" %>
 
-            <% attendance = @attendances_by_event[event.id] %>
+              <% attendance = @attendances_by_event[event.id] %>
               <% unless current_user.bar? %>
                 <% if attendance.present? %>
                   <%= simple_form_for [event, attendance],
-                    url: event_attendance_path(event, attendance),
-                    method: :delete do |f| %>
-                  <%= f.button :submit,
-                            "Cancel presence",
-                            class: "btn btn-danger w-100 mt-3 rounded-pill",
-                            data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" } %>
+                        url: event_attendance_path(event, attendance),
+                        method: :delete do |f| %>
+                    <%= f.button :submit,
+                          "Cancel presence",
+                          class: "btn btn-danger w-100 mt-3 rounded-pill",
+                          data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" } %>
                   <% end %>
                 <% elsif Time.current < event.date %>
                   <%= simple_form_for [event, Attendance.new],
@@ -81,12 +88,19 @@
                           "I want to go",
                           class: "btn btn-primary w-100 mt-3 rounded-pill" %>
                   <% end %>
-                    <% end %>
-                  <% end %>
+                <% end %>
+              <% end %>
+
             </div>
           </div>
         </div>
       <% end %>
     </div>
+
+    <!--  FINAL só no mobile -->
+    <div class="text-center mt-3 d-md-none">
+      <%= link_to "Create new event", new_event_path, class: "btn btn-secondary w-100 rounded-pill" %>
+    </div>
+
   </div>
 </div>

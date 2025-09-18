@@ -145,12 +145,12 @@
   color: #f5f5f5; /* cor base do texto no card */
 }
 
-/* Tipografia igual ao attendances */
+
 .my-events-page .event-card {
   color: #f5f5f5;
 
   .event-title {
-    /* título equivalente a .card-title */
+
     font-weight: 800;
     color: #fff;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
@@ -159,7 +159,7 @@
     .vs       { color: #eaeaea; }
   }
 
-  .event-meta {                        /* equivalente a .card-text */
+  .event-meta {
     color: #f1f1f1;
   }
 
