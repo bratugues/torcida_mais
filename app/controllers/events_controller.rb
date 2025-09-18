@@ -34,6 +34,7 @@ class EventsController < ApplicationController
     @review = Review.new
     @message = Message.new
     @user_has_attended = current_user.attendances.exists?
+    @reviews = @event.reviews
   end
 
   def new
