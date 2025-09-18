@@ -68,12 +68,11 @@
                 <% if attendance.present? %>
                   <%= simple_form_for [event, attendance],
                     url: event_attendance_path(event, attendance),
-                    method: :delete,
-                    html: { data: { turbo: "false" } } do |f| %>
+                    method: :delete do |f| %>
                   <%= f.button :submit,
-                    "Cancel presence",
-                    class: "btn btn-danger w-100 mt-3 rounded-pill",
-                    data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" } %>
+                            "Cancel presence",
+                            class: "btn btn-danger w-100 mt-3 rounded-pill",
+                            data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" } %>
                   <% end %>
                 <% elsif Time.current < event.date %>
                   <%= simple_form_for [event, Attendance.new],
@@ -84,13 +83,10 @@
                   <% end %>
                     <% end %>
                   <% end %>
-
-
             </div>
           </div>
         </div>
       <% end %>
     </div>
   </div>
-
 </div>
