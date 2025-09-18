@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   before_action :require_non_bar, only: [:my]
 
   def index
+    @events = Event.all
+    @attendances_by_event = current_user.attendances.index_by(&:event_id)
 
     if params[:match_id].present?
       # Se um match_id foi passado na URL, use-o como filtro inicial
@@ -25,13 +27,14 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @attendance = current_user.attendances.find_by(event: @event) || Attendance.new
     @match_event = Event.includes(:club, :match)
     @attendance = Attendance.new
     @attendances = @event.attendances
     @review = Review.new
     @message = Message.new
-    @user_in_event = Attendance.where(event: @event, user: current_user).any?
-    @user_has_attended = Attendance.where(user: current_user).exists?
+    @user_in_event = @attendance.persisted?
+    @user_has_attended = current_user.attendances.exists?
   end
 
   def new
