@@ -1,4 +1,4 @@
-// Import page-specific CSS files here.
+
 @import "home";
 
 .form-control {
@@ -44,7 +44,7 @@
   &::before {
     content: "";
     position: absolute; inset: 0;
-    background: rgba(0,0,0,.40); /* mesmo contraste da attendances */
+    background: rgba(0,0,0,.40);
     z-index: -1;
   }
 
@@ -91,4 +91,29 @@
 @media (max-width: 480px) {
   .events-page { padding: 1rem; }
   .events-page .event-card { padding: 1rem; }
+}
+@media (max-width: 576px) {
+  .events-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: .5rem;
+  }
+
+
+  .events-headline   { order: 1; }
+  .events-location   { order: 2; }
+  .events-search     { order: 3; margin-top: .25rem; }
+  .events-list       { order: 4; }
+  .events-create-btn { order: 5; width: 100%; border-radius: 999px; }
+
+
+  .page-title { margin-bottom: .25rem; }
+  .events-location { margin-top: 0; }
+}
+
+
+@media (min-width: 577px) {
+  .events-header { display: flex; align-items: center; justify-content: space-between; }
+  .events-create-btn { width: auto; }
 }
