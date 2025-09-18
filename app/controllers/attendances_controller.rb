@@ -3,21 +3,19 @@ class AttendancesController < ApplicationController
   before_action :require_non_bar
 
   def index
-    @attendances = current_user.attendances
+    @events = Event.all # seu escopo
+  @attendances_by_event = current_user.attendances.index_by(&:event_id)
   end
 
   def create
-    @attendance = Attendance.new
-    @attendance.event = @event
-    @attendance.user = current_user
-    @attendance.save!
-    redirect_to event_path(@event)
+    current_user.attendances.find_or_create_by!(event: @event)
+    redirect_back fallback_location: events_path, status: :see_other
   end
 
   def destroy
-    @attendance = Attendance.find(params[:id])
-    @attendance.destroy
-    redirect_to attendances_path, status: :see_other
+    attendance = current_user.attendances.find(params[:id]) 
+    attendance.destroy
+    redirect_back fallback_location: events_path, status: :see_other
   end
 
   private

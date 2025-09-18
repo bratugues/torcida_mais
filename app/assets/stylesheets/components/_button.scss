@@ -34,6 +34,23 @@
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
 }
 
+.btn-danger {
+  cursor: pointer;
+  display: block;
+  padding: 14px 24px;
+  border-radius: 9999px;
+  background: #176db3;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  transition: transform 0.3s ease-in-out;
+  font-family: $body-font;
+}
+
 .btn-login{
   display: inline-block;
   padding: 12px 20px;

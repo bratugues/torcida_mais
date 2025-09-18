@@ -30,16 +30,25 @@
           </div>
           <p><%= @event.description%></p>
           <% unless current_user.bar? %>
-              <%if @user_in_event%>
-                <%= simple_form_for [@event, @attendance] do |f| %>
-                  <%= f.button :submit, "You're already in the event.", class: "btn-custom-primary btn-primary w-100 mt-3 disabled no" %>
-                <% end %>
-              <% elsif Time.now < @event.date %>
-                <%= simple_form_for [@event, @attendance] do |f| %>
-                  <%= f.button :submit, "Confirm presence", class: "btn-custom-primary btn-primary w-100 mt-3" %>
-                <% end %>
+            <% if @user_in_event %>
+              <%= simple_form_for [@event, @attendance],
+                                  url: event_attendance_path(@event, @attendance),
+                                  method: :delete do |f| %>
+                <%= f.button :submit,
+                            "Cancel presence",
+                            class: "btn btn-danger w-100 mt-3 rounded-pill",
+                            data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" } %>
+              <% end %>
+            <% elsif Time.current < @event.date %>
+              <%= simple_form_for [@event, Attendance.new] do |f| %>
+                <%= f.button :submit,
+                            "Confirm presence",
+                            class: "btn btn-primary w-100 mt-3" %>
               <% end %>
             <% end %>
+          <% end %>
+
+
         </div>
         <div class="row">
           <div class="participants-card">
@@ -93,5 +102,5 @@
       <%end%>
 </div>
 
-  
+
 </div>

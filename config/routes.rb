@@ -6,13 +6,13 @@ Rails.application.routes.draw do
       get :my
     end
 
-    resources :attendances, only: [:create]
+    resources :attendances, only: [:create, :destroy]
     resources :reviews, only: [:new, :create, :index]
     resources :chats, only: [:index]
     resources :messages, only: [:create]
   end
 
-  resources :attendances, only: [:index, :destroy]
+  resources :attendances, only: [:index]
   resources :matches, only: [:index, :destroy]
   get "about", to: "pages#about"
   get "dashboard", to: "pages#dashboard", as: :dashboard
