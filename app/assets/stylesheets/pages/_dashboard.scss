@@ -134,9 +134,30 @@
   }
 }
 
+.accordion-item {
+  background-color: white;
+  border: none !important;
+}
+
+.accordion-button {
+  background-color: $forest;
+  box-shadow: none !important;
+}
+
+.span-other-matches {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  color: black;
+  font-weight: 500;
+}
+
+.i {
+  color: black;
+}
+
 .other-matches {
-  background-color: #fffffff1;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  background-color: white;
+
   border-radius: 12px;
 
   h3 {
@@ -150,4 +171,9 @@
     border-radius: 12px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
+}
+
+.accordion-collapse {
+  max-height: 191px;
+  overflow-y: auto;
 }
