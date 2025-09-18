@@ -2,8 +2,16 @@ class EventsController < ApplicationController
   before_action :require_non_bar, only: [:my]
 
   def index
-    @events = Event.includes(:club, :match)
-               .where(city: current_user.location)
+    @events = Event.all
+    @attendances_by_event = current_user.attendances.index_by(&:event_id)
+
+    if params[:match_id].present?
+      # Se um match_id foi passado na URL, use-o como filtro inicial
+      @events = Event.includes(:club, :match).where(match_id: params[:match_id], city: current_user.location)
+    else
+      # Se não, use o filtro padrão por localização do usuário
+      @events = Event.includes(:club, :match).where(city: current_user.location, club: current_user.club)
+    end
 
     if params[:query].present?
       sql_subquery = <<~SQL
@@ -19,12 +27,14 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @attendance = current_user.attendances.find_by(event: @event) || Attendance.new
+    @match_event = Event.includes(:club, :match)
     @attendance = Attendance.new
     @attendances = @event.attendances
     @review = Review.new
     @message = Message.new
-    @user_in_event = Attendance.where(event: @event, user: current_user).any?
-    @user_has_attended = Attendance.where(user: current_user).exists?
+    @user_in_event = @attendance.persisted?
+    @user_has_attended = current_user.attendances.exists?
   end
 
   def new
@@ -80,6 +90,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :address, :city, :date, :capacity, :price, :match, :place, :club_id, :description)
+    params.require(:event).permit(:name, :address, :city, :date, :capacity, :price, :match, :match_id, :place, :club_id, :description)
   end
 end

@@ -1,25 +1,26 @@
-<h1 class="h1-new">Edit Event</h1>
-<div class="container-new">
-  <div class="text-fields">
+<div class="edit-event-page">
+  <h1 class="h1-new">Edit Event</h1>
+  <div class="container-new">
+    <div class="text-fields">
 
-    <%= simple_form_for @event do |f| %>
-      <%= f.input :name, label: "Event name:" %>
-      <%= f.association :match, label: "Select the match..." %>
-      <%= f.association :club, label: "Select the team..."%>
-      <%= f.input :place, label: "Place:"%>
-      <%= f.input :city,
-                      as: :select,
-                      collection: User::Cities,
-                      label: "City:" %>
-      <%= f.input :address, label: "Address:" %>
-      <%= f.input :date, as: :string, label: "Date and Time:",  input_html: {
-              data: { controller: "flatpickr" },
-              placeholder: 'Select the date and time...'
-            }%>
-      <%= f.input :capacity, label: "Capacity:"%>
-      <%= f.input :price, label: "Price:"%>
-      <%= f.input :description, label: "Description:"%>
-      <%= f.submit "Update Event", class: "btn-primary w-100"%>
-    <% end %>
+      <%= simple_form_for @event do |f| %>
+        <%= f.input :name, label: "Event name:" %>
+        <%= f.association :match, label: "Select the match..." %>
+        <%= f.association :club, label: "Select the team..."%>
+        <%= f.input :place, label: "Place:"%>
+        <%= f.input :city,
+                        as: :select,
+                        collection: User::Cities,
+                        label: "City:" %>
+        <%= f.input :address, label: "Address:" %>
+        <%= f.input :date, as: :string, label: "Date and Time:",  input_html: {
+                data: { controller: "flatpickr" },
+                placeholder: 'Select the date and time...'
+              }%>
+        <%= f.input :capacity, label: "Capacity:"%>
+        <%= f.input :price, label: "Price:"%>
+        <%= f.input :description, label: "Description:"%>
+        <%= f.submit "Update Event", class: "btn-primary w-100"%>
+      <% end %>
+    </div>
   </div>
-</div>

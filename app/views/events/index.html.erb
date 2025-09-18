@@ -63,10 +63,29 @@
 
               <%= link_to "See event", event_path(event), class: "card-link btn btn-primary mb-2" %>
 
+            <% attendance = @attendances_by_event[event.id] %>
               <% unless current_user.bar? %>
-                <%= button_to "I want to go", event_attendances_path(event),
-                    method: :post, class: "card-link btn btn-primary mb-2 w-100" %>
-              <% end %>
+                <% if attendance.present? %>
+                  <%= simple_form_for [event, attendance],
+                    url: event_attendance_path(event, attendance),
+                    method: :delete,
+                    html: { data: { turbo: "false" } } do |f| %>
+                  <%= f.button :submit,
+                    "Cancel presence",
+                    class: "btn btn-danger w-100 mt-3 rounded-pill",
+                    data: { turbo_method: :delete, controller: "sweetalert", action: "click->sweetalert#alert" } %>
+                  <% end %>
+                <% elsif Time.current < event.date %>
+                  <%= simple_form_for [event, Attendance.new],
+                        html: { data: { turbo: "false" } } do |f| %>
+                    <%= f.button :submit,
+                          "I want to go",
+                          class: "btn btn-primary w-100 mt-3 rounded-pill" %>
+                  <% end %>
+                    <% end %>
+                  <% end %>
+
+
             </div>
           </div>
         </div>
