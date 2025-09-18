@@ -3,7 +3,7 @@
     <div class="row g-4">
 
       <div class="col-12 col-lg-4">
-        <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
           <div class="card-user">
             <h1 class="fw-bold mb-1">Hello, <%= current_user.name %></h1>
             <div class="text-muted d-flex align-items-center">
@@ -21,6 +21,49 @@
               ) %>
           </div>
       </div>
+
+      <div class="col-12 col-lg-4">
+         <div class="events">
+          <div class="card-body">
+            <h3 class="mb-0">Your confirmed events</h3>
+              <div class="card-events">
+                <% if @attendances.any? %>
+                  <div class="masonry-1">
+                    <% @attendances.each do |attendance| %>
+                      <div class="masonry-item">
+                        <div class="card rounded-4 shadow-sm position-relative h-100">
+                          <%= link_to "", event_path(attendance.event), class: "stretched-link" %>
+                          <div class="card-body">
+                            <div class="d-flex align-items-center gap-1">
+                              <div class="text-center border rounded-3 px-2 py-1">
+                                <div class="fw-semibold"><%= attendance.event.date&.strftime("%d") %></div>
+                                <div class="fw-semibold"><%= attendance.event.date&.strftime("%b")&.upcase %></div>
+                                <small class="text-muted"><%= attendance.event.date&.strftime("%H:%M") %></small>
+                              </div>
+                              <div>
+                                <p class="fw-semibold mb-1"><%= attendance.event.name %></p>
+                                <small class="text-muted d-block">
+                                  <i class="fa-regular fa-map me-1"></i><%= attendance.event.place %>
+                                </small>
+                                <small class="text-muted">
+                                  <i class="fa-solid fa-users me-1"></i>
+                                  <%= pluralize(attendance.event.attendances.count, "attendee") %>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <p class="text-muted mb-0">You don't have any event confirmed.</p>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      </div>
+
 
       <div class="col-12 col-lg-4">
         <div class="next-matches shadow-sm rounded-4 mb-4">
@@ -43,76 +86,40 @@
             <div class="d-grid mt-3">
               <%= link_to "Search events", events_path, class: "btn btn-secondary rounded-pill" %>
             </div>
-          </div>
-        </div>
 
-        <div class="events">
-          <div class="card-body">
-            <h3 class="mb-0">Your confirmed events</h3>
-              <div class="card-events">
-                <% if @attendances.any? %>
-                  <div class="masonry-2">
-                    <% @attendances.each do |attendance| %>
-                      <div class="masonry-item">
-                        <div class="card rounded-4 shadow-sm position-relative h-100">
-                          <%= link_to "", event_path(attendance.event), class: "stretched-link" %>
-                          <div class="card-body">
-
-
-                            <div class="d-flex align-items-center gap-1">
-                              <div class="text-center border rounded-3 px-2 py-1">
-                                <div class="fw-semibold"><%= attendance.event.date&.strftime("%d") %></div>
-                                <div class="fw-semibold"><%= attendance.event.date&.strftime("%b")&.upcase %></div>
-                                <small class="text-muted"><%= attendance.event.date&.strftime("%H:%M") %></small>
-                              </div>
-                              <div>
-                                <p class="fw-semibold mb-1"><%= attendance.event.name %></p>
-                                <small class="text-muted d-block">
-                                  <i class="fa-regular fa-map me-1"></i><%= attendance.event.place %>
-                                </small>
-                                <small class="text-muted">
-                                  <i class="fa-solid fa-users me-1"></i>
-                                  <%= pluralize(attendance.event.attendances.count, "attendee") %>
-                                </small>
-                              </div>
-                            </div>
-
-
+            <div class="card shadow-sm border-0 rounded-4 mt-4">
+              <div class="other-matches">
+                <div class="accordion" id="otherMatchesAcc">
+                  <div class="accordion-item border-0">
+                    <h3 class="accordion-header" id="headingOtherMatches">
+                      <button class="accordion-button px-0 bg-white" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#collapseOtherMatches"
+                              aria-expanded="true" aria-controls="collapseOtherMatches">
+                        <span class="me-2">Other matches</span>
+                        <i class="fa-regular fa-futbol"></i>
+                      </button>
+                    </h3>
+                    <div id="collapseOtherMatches" class="accordion-collapse collapse show"
+                        aria-labelledby="headingOtherMatches" data-bs-parent="#otherMatchesAcc">
+                      <div class="accordion-body px-0">
+                        <% if @other_matches.any? %>
+                          <div class="vstack gap-3">
+                            <% @other_matches.each do |match| %>
+                              <%= render partial: "matches/card", locals: { match: match, show_footer: false } %>
+                            <% end %>
                           </div>
+                        <% else %>
+                          <p class="text-muted mb-0">No upcoming matches.</p>
+                        <% end %>
+                        <div class="d-grid mt-3">
+                          <%= link_to "More matches", matches_path, class: "btn btn-secondary rounded-pill" %>
                         </div>
                       </div>
-                    <% end %>
+                    </div>
                   </div>
-                <% else %>
-                  <p class="text-muted mb-0">You don't have any event confirmed.</p>
-                <% end %>
+                </div>
               </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-12 col-lg-4">
-        <div class="card shadow-sm border-0 rounded-4 mb-4">
-          <div class="other-matches">
-            <div class="d-flex align-items-center gap-2 mb-3">
-                <h3 class="mb-0">Other matches</h3>
-                <i class="fa-regular fa-futbol"></i>
-              </div>
-
-                <% if @other_matches.any? %>
-                  <div class="vstack gap-3">
-                    <% @other_matches.each do |match| %>
-                      <%= render partial: "matches/card", locals: { match: match, show_footer: false } %>
-                    <% end %>
-                  </div>
-                <% else %>
-                  <p class="text-muted">No upcoming matches.</p>
-                <% end %>
-              <div class="d-grid mt-3">
-                  <%= link_to "More matches", matches_path, class: "btn btn-secondary rounded-pill" %>
-              </div>
-
+            </div>
           </div>
         </div>
       </div>
