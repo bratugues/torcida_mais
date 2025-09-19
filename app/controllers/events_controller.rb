@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     end
 
     @attendances_by_event = current_user.attendances.index_by(&:event_id)
-    @events = Event.all.order(created_at: :desc)
+    @events = @events.order(created_at: :desc)
   end
 
   def show
