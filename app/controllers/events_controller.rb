@@ -2,8 +2,6 @@ class EventsController < ApplicationController
   before_action :require_non_bar, only: [:my]
 
   def index
-    @events = Event.all
-    @attendances_by_event = current_user.attendances.index_by(&:event_id)
 
     if params[:match_id].present?
       # Se um match_id foi passado na URL, use-o como filtro inicial
@@ -15,15 +13,17 @@ class EventsController < ApplicationController
 
     if params[:query].present?
       sql_subquery = <<~SQL
-        events.name ILIKE :query OR
-        events.address ILIKE :query OR
-        events.city ILIKE :query OR
-        matches.title ILIKE :query OR
-        events.place ILIKE :query
+      events.name ILIKE :query OR
+      events.address ILIKE :query OR
+      events.city ILIKE :query OR
+      matches.title ILIKE :query OR
+      events.place ILIKE :query
       SQL
       @events = @events.joins(:match).where(sql_subquery, query: "%#{params[:query]}%")
     end
 
+    @attendances_by_event = current_user.attendances.index_by(&:event_id)
+    @events = Event.all.order(created_at: :desc)
   end
 
   def show
