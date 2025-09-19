@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :require_non_bar, only: [:my]
+  before_action :set_form_collections, only: [:new, :create]
 
   def index
 
@@ -40,18 +41,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-     cid  = current_user.club_id
-
-      base = Match.includes(:home_team, :away_team)
-              .where("played_at >= ?", Time.zone.now)
-              .order(:played_at)
-
-      @matches_for_user = cid ? base.where("home_team_id = :cid OR away_team_id = :cid", cid: cid) : base
-
-      @suggested_match_id = @matches_for_user.first&.id
-
-      club_ids = @matches_for_user.flat_map { |m| [m.home_team_id, m.away_team_id] }.uniq
-      @clubs_from_matches = Club.where(id: club_ids).order(:name)
   end
 
   def create
@@ -92,5 +81,20 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :address, :city, :date, :capacity, :price, :match, :match_id, :place, :club_id, :description)
+  end
+
+  def set_form_collections
+    cid = current_user.club_id
+
+    base = Match.includes(:home_team, :away_team)
+            .where("played_at >= ?", Time.zone.now)
+            .order(:played_at)
+
+    @matches_for_user = cid ? base.where("home_team_id = :cid OR away_team_id = :cid", cid: cid) : base
+
+    @suggested_match_id = @matches_for_user.first&.id
+
+    club_ids = @matches_for_user.flat_map { |m| [m.home_team_id, m.away_team_id] }.uniq
+    @clubs_from_matches = Club.where(id: club_ids).order(:name)
   end
 end
